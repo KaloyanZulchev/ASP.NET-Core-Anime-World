@@ -1,4 +1,6 @@
 using AnimeWorld.Data;
+using AnimeWorld.Data.Models;
+using AnimeWorld.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -26,7 +28,7 @@ namespace AnimeWorld
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services
-               .AddDefaultIdentity<IdentityUser>(options =>
+               .AddDefaultIdentity<User>(options =>
                {
                    options.Password.RequireDigit = false;
                    options.Password.RequireLowercase = false;
@@ -46,6 +48,8 @@ namespace AnimeWorld
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.PrepareDatabase();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
