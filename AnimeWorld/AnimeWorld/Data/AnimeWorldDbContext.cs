@@ -83,6 +83,13 @@ namespace AnimeWorld.Data
                 .HasForeignKey(ap => ap.AnimeId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder
+                .Entity<Comment>()
+                .HasOne(c => c.User)
+                .WithMany(c => c.Comments)
+                .HasForeignKey(c => c.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             base.OnModelCreating(builder);
         }
     }
