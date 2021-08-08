@@ -23,6 +23,8 @@ namespace AnimeWorld.Data.Models
 
         public int Epizodes { get; set; }
 
+        public int Views { get; set; }
+
         [Required]
         public string ImageURL { get; set; }
 
