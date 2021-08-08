@@ -1,0 +1,50 @@
+﻿@model AnimeFormModel
+
+<section class="normal-breadcrumb set-bg" data-setbg='https://static.posters.cz/image/750webp/84239.webp'>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="normal__breadcrumb__text">
+                    <h2>Sign Up</h2>
+                    <p>Welcome to the official Anime blog.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="signup spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-2">
+                <div class="login__form">
+                    <h3>Anime Information</h3>
+                    <form method="post">
+                        <div class="input__item">
+                            <label asp-for="NameJPN"></label>
+                            <input asp-for="NameJPN" placeholder="Email address">
+                            <span asp-validation-for="NameJPN" class="small text-danger"></span>
+                        </div>
+                        <div class="input__item">
+                            <label asp-for="Aired"></label>
+                            <input type="date" asp-for="Aired" placeholder="Email address">
+                            <span asp-validation-for="Aired" class="small text-danger"></span>
+                        </div>
+                        <div class="input__item">
+                            <label asp-for="Finished"></label>
+                            <input type="date" asp-for="Finished" placeholder="Email address">
+                            <span asp-validation-for="Finished" class="small text-danger"></span>
+                        </div>
+                        <button type="submit" class="site-btn">Add</button>
+                    </form>
+                    <h5>Already have an account?</h5>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
