@@ -1713,6 +1713,113 @@ ol {
 }
 
 /*---------------------
+  Add
+---------------------*/
+
+.add {
+	padding-top: 130px;
+	padding-bottom: 120px;
+}
+
+.add__form {
+	position: relative;
+	padding-left: 145px;
+}
+
+.add__form h3 {
+	color: #ffffff;
+	font-weight: 700;
+	font-family: "Oswald", sans-serif;
+	margin-bottom: 30px;
+}
+
+.add__form form .input__item {
+	position: relative;
+	width: 370px;
+	margin-bottom: 20px;
+}
+/*---------------------
+.add__form form .input__item:before {
+	position: absolute;
+	left: 50px;
+	top: 10px;
+	height: 30px;
+	width: 1px;
+	background: #b7b7b7;
+	content: "";
+}
+-----------------------*/
+
+.add__form form .input__item input {
+	height: 50px;
+	width: 100%;
+	font-size: 15px;
+	color: #870505;
+	background: #ffffff;
+	border: none;
+	padding-left: 10px; /* ----- 76px ---- */
+}
+
+.add__form form .input__item textarea {
+	height: 200px;
+	width: 100%;
+	font-size: 15px;
+	color: #870505;
+	background: #ffffff;
+	border: none;
+	padding-left: 10px; /* ----- 76px ---- */
+}
+
+
+.add__form form .input__item label{
+	color: #ffffff;
+	font-family: "Oswald", sans-serif;
+}
+
+.add__form form .input__item input::-webkit-input-placeholder {
+	color: #b7b7b7;
+}
+
+.add__form form .input__item input::-moz-placeholder {
+	color: #b7b7b7;
+}
+
+.add__form form .input__item input:-ms-input-placeholder {
+	color: #b7b7b7;
+}
+
+.add__form form .input__item input::-ms-input-placeholder {
+	color: #b7b7b7;
+}
+
+.add__form form .input__item input::placeholder {
+	color: #b7b7b7;
+}
+
+/*
+.add__form form .input__item span {
+	color: #b7b7b7;
+	font-size: 20px;
+	position: absolute;
+	left: 15px;
+	top: 13px;
+}
+*/
+.add__form form button {
+	border-radius: 0;
+	margin-top: 10px;
+}
+
+.add__form .forget_pass {
+	font-size: 15px;
+	color: #ffffff;
+	display: inline-block;
+	position: absolute;
+	right: 60px;
+	bottom: 12px;
+}
+
+/*---------------------
   Login
 -----------------------*/
 

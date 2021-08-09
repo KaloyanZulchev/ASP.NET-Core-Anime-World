@@ -1,6 +1,7 @@
 using AnimeWorld.Data;
 using AnimeWorld.Data.Models;
 using AnimeWorld.Infrastructure.Extensions;
+using AnimeWorld.Services.Animes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -44,6 +45,8 @@ namespace AnimeWorld
             {
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
             });
+
+            services.AddTransient<IAnimeService, AnimeService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

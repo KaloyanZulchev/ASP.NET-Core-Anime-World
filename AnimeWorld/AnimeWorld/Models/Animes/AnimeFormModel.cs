@@ -1,4 +1,4 @@
-﻿using AnimeWorld.Services.Anime.Models;
+﻿using AnimeWorld.Services.Animes.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,22 +13,25 @@ namespace AnimeWorld.Models.Animes
         public const string MaxDate = "2026-01-01";
 
         [Required]
-        [MaxLength(NameMaxLength)]
+        [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
         public string NameJPN { get; set; }
 
-        [MaxLength(NameMaxLength)]
+        [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
         public string NameEN { get; set; }
 
         [Required]
-        [MaxLength(DescriptionMaxLength)]
+        [StringLength(DescriptionMaxLength, MinimumLength = DescriptionMinLength)]
         public string Description { get; set; }
 
+        [Range(MinEpizodes, MaxEpizodes)]
         public int Epizodes { get; set; }
 
         [Required]
+        [Url]
         public string ImageURL { get; set; }
 
         [Required]
+        [Url]
         public string TrailerURL { get; set; }
 
         public DateTime Aired { get; set; }
@@ -37,6 +40,6 @@ namespace AnimeWorld.Models.Animes
 
         public int TypeId { get; set; }
 
-        public IEnumerable<AnimeGanreServiceModel> Genres { get; set; }
+        public IEnumerable<AnimeTypeServiceModel> Types { get; set; }
     }
 }

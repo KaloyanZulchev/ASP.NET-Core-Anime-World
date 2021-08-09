@@ -35,7 +35,7 @@ namespace AnimeWorld.Data.Models
 
         public DateTime? Finished { get; set; }
 
-        public int? NextSesonId { get; set; }
+        public int? NextSeasonId { get; set; }
 
         public Anime NextSeason { get; set; }
 

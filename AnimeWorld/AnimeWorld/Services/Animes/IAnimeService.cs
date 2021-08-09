@@ -1,10 +1,8 @@
-﻿using AnimeWorld.Services.Anime.Models;
+﻿using AnimeWorld.Services.Animes.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace AnimeWorld.Services.Anime
+namespace AnimeWorld.Services.Animes
 {
     public interface IAnimeService
     {
@@ -16,14 +14,16 @@ namespace AnimeWorld.Services.Anime
             string imageURL,
             string trailerURL,
             DateTime aired,
-            DateTime finished,
+            DateTime? finished,
             int typeId,
-            IEnumerable<int> ganreIds);
+            string userId);
 
         bool GanresExists(IEnumerable<int> ganreIds);
 
         bool TypeExists(int typeId);
 
         IEnumerable<AnimeGanreServiceModel> AllGanreas();
+
+        IEnumerable<AnimeTypeServiceModel> AllTypes();
     }
 }

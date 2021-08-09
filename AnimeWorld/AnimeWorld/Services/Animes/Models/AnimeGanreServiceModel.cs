@@ -1,4 +1,4 @@
-﻿namespace AnimeWorld.Services.Anime.Models
+﻿namespace AnimeWorld.Services.Animes.Models
 {
     public class AnimeGanreServiceModel
     {

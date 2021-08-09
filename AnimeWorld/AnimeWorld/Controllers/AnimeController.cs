@@ -1,41 +1,51 @@
-﻿using AnimeWorld.Models.Animes;
+﻿using AnimeWorld.Infrastructure.Extensions;
+using AnimeWorld.Models.Animes;
+using AnimeWorld.Services.Animes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AnimeWorld.Controllers
 {
     public class AnimeController : Controller
     {
-        public IActionResult Add() => View();
+        private readonly IAnimeService animes;
+
+        public AnimeController(IAnimeService animes) => this.animes = animes;
+
+        [Authorize]
+        public IActionResult Add()
+            => View(new AnimeFormModel
+                {
+                    Types = this.animes.AllTypes()
+                });
 
         [HttpPost]
+        [Authorize]
         public IActionResult Add(AnimeFormModel anime)
         {
-            //if (!this.cars.CategoryExists(car.CategoryId))
-            //{
-            //    this.ModelState.AddModelError(nameof(car.CategoryId), "Category does not exist.");
-            //}
+            if (!this.animes.TypeExists(anime.TypeId))
+            {
+                this.ModelState.AddModelError(nameof(anime.TypeId), "Type does not exist.");
+            }
 
-            //if (!this.ModelState.IsValid)
-            //{
-            //    car.Categories = this.cars.AllCategories();
+            if (!this.ModelState.IsValid)
+            {
+                anime.Types = this.animes.AllTypes();
 
-            //    return View(car);
-            //}
+                return View(anime);
+            }
 
-            //var carId = this.cars.Create(
-            //    car.Brand,
-            //    car.Model,
-            //    car.Description,
-            //    car.ImageUrl,
-            //    car.Year,
-            //    car.CategoryId,
-            //    dealerId);
-
-            //TempData[GlobalMessageKey] = "You car was added and is awaiting for approval!";
+            var animeId = this.animes.Create(
+                anime.NameJPN,
+                anime.NameEN,
+                anime.Description,
+                anime.Epizodes,
+                anime.ImageURL,
+                anime.TrailerURL,
+                anime.Aired,
+                anime.Finished,
+                anime.TypeId,
+                this.User.Id());
 
             return RedirectToAction("Index", "Home");
         }
