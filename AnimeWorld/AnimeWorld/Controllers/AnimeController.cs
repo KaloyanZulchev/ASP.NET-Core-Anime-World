@@ -12,6 +12,8 @@ namespace AnimeWorld.Controllers
 
         public AnimeController(IAnimeService animes) => this.animes = animes;
 
+        public IActionResult All() => View();
+
         [Authorize]
         public IActionResult Add()
             => View(new AnimeFormModel

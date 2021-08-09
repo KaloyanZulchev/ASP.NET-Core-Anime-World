@@ -52,12 +52,12 @@
                         </div>
                         <div class="input__item">
                             <label asp-for="Aired"></label>
-                            <input type="date" asp-for="Aired">
+                            <input type="date" asp-for="Aired" value="@DateTime.UtcNow" min="@AnimeFormModel.MinDate" max="@AnimeFormModel.MaxDate">
                             <span asp-validation-for="Aired" class="small text-danger"></span>
                         </div>
                         <div class="input__item">
                             <label asp-for="Finished"></label>
-                            <input type="date" asp-for="Finished">
+                            <input type="date" asp-for="Finished" value="@DateTime.UtcNow" min="@AnimeFormModel.MinDate" max="@AnimeFormModel.MaxDate">
                             <span asp-validation-for="Finished" class="small text-danger"></span>
                         </div>
                         <div class="input__item">
