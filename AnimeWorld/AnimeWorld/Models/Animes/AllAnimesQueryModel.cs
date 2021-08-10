@@ -15,7 +15,7 @@ namespace AnimeWorld.Models.Animes
 
         public string SearchTerm { get; init; }
 
-        public int totalAnimes { get; set; }
+        public int TotalAnimes { get; set; }
 
         public AnimeSorting Sorting { get; init; }
 
