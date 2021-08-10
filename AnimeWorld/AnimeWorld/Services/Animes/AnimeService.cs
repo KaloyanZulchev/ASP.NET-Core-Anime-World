@@ -1,5 +1,6 @@
 ﻿using AnimeWorld.Data;
 using AnimeWorld.Data.Models;
+using AnimeWorld.Models;
 using AnimeWorld.Services.Animes.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -18,6 +19,57 @@ namespace AnimeWorld.Services.Animes
         {
             this.data = data;
             this.mapper = mapper.ConfigurationProvider;
+        }
+
+        public AnimeQueryServieModel All(
+            string searchTerm = null,
+            int typeId = 0,
+            int genreId = 0,
+            int carsPerPage = 1,
+            AnimeSorting sorting = AnimeSorting.DateCreated,
+            int currentPage = 1)
+        {
+            var animeQuery = this.data.Animes.AsQueryable();
+
+            if (typeId != 0)
+            {
+                animeQuery = animeQuery
+                    .Where(a => a.TypeId == typeId);
+            }
+
+            if (genreId != 0)
+            {
+                animeQuery = animeQuery
+                    .Where(a => a.Genres.Any(g => g.GenreId == genreId));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                animeQuery = animeQuery
+                    .Where(a => (a.NameJPN + " " + a.NameEN).ToLower().Contains(searchTerm.ToLower())
+                    || a.Description.ToLower().Contains(searchTerm.ToLower()));
+            }
+
+            animeQuery = sorting switch
+            {
+                AnimeSorting.Alphabetically => animeQuery.OrderBy(a => a.NameJPN),
+                AnimeSorting.MostViews => animeQuery.OrderByDescending(a => a.Views),
+                AnimeSorting.DateCreated or _ => animeQuery.OrderByDescending(a => a.Id)
+            };
+
+            var totalAnimes = animeQuery.Count();
+
+            var animes = animeQuery
+                .Skip((currentPage - 1) * carsPerPage)
+                .Take(carsPerPage)
+                .ProjectTo<AnimeServieModel>(this.mapper)
+                .ToList();
+
+            return new AnimeQueryServieModel
+            {
+                Animes = animes,
+                TotalAnimes = totalAnimes
+            };
         }
 
         public int Create(
@@ -52,7 +104,7 @@ namespace AnimeWorld.Services.Animes
             return animeData.Id;
         }
 
-        public IEnumerable<AnimeGanreServiceModel> AllGanreas()
+        public IEnumerable<AnimeGanreServiceModel> AllGenres()
             => this.data
                 .Genres
                 .ProjectTo<AnimeGanreServiceModel>(this.mapper)
@@ -64,12 +116,12 @@ namespace AnimeWorld.Services.Animes
                 .ProjectTo<AnimeTypeServiceModel>(this.mapper)
                 .ToList();
 
-        public bool GanresExists(IEnumerable<int> ganreIds)
-        {
-            throw new NotImplementedException();
-        }
+        public bool GenreExist(int genreId)
+            => this.data
+                .Genres
+                .Any(g => g.Id == genreId);
 
-        public bool TypeExists(int typeId)
+        public bool TypeExist(int typeId)
             => this.data
                 .Types
                 .Any(t => t.Id == typeId);

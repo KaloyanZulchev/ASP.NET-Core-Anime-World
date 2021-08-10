@@ -881,6 +881,18 @@ ol {
 	margin-right: 16px;
 }
 
+.product__page__title .product__page__filter label {
+	color: #ffffff;
+	display: inline-block;
+	margin-bottom: 0;
+	margin-top: 10px;
+	margin-right: 16px;
+}
+
+.search-button {
+	margin-top: 30px;
+}
+
 .product__page__title .product__page__filter .nice-select {
 	float: none;
 	display: inline-block;

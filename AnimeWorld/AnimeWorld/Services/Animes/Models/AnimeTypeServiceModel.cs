@@ -1,9 +1,6 @@
 ﻿namespace AnimeWorld.Services.Animes.Models
 {
-    public class AnimeTypeServiceModel
+    public class AnimeTypeServiceModel : AnimeGanreServiceModel
     {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
     }
 }

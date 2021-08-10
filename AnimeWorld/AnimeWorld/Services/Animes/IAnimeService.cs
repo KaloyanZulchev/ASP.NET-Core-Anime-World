@@ -1,4 +1,5 @@
-﻿using AnimeWorld.Services.Animes.Models;
+﻿using AnimeWorld.Models;
+using AnimeWorld.Services.Animes.Models;
 using System;
 using System.Collections.Generic;
 
@@ -18,11 +19,19 @@ namespace AnimeWorld.Services.Animes
             int typeId,
             string userId);
 
-        bool GanresExists(IEnumerable<int> ganreIds);
+        AnimeQueryServieModel All(
+            string searchTerm = null,
+            int typeId = 0,
+            int genreId = 0,
+            int carsPerPage = 1,
+            AnimeSorting sorting = AnimeSorting.DateCreated,
+            int currentPage = 1);
 
-        bool TypeExists(int typeId);
+        bool GenreExist(int genreId);
 
-        IEnumerable<AnimeGanreServiceModel> AllGanreas();
+        bool TypeExist(int typeId);
+
+        IEnumerable<AnimeGanreServiceModel> AllGenres();
 
         IEnumerable<AnimeTypeServiceModel> AllTypes();
     }

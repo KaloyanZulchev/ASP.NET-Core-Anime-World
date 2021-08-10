@@ -12,7 +12,24 @@ namespace AnimeWorld.Controllers
 
         public AnimeController(IAnimeService animes) => this.animes = animes;
 
-        public IActionResult All() => View();
+        public IActionResult All([FromQuery] AllAnimesQueryModel query)
+        {
+            var queryResult = this.animes.All(
+                query.SearchTerm,
+                query.TypeId,
+                query.GenreId,
+                AllAnimesQueryModel.AnimesPerPage,
+                query.Sorting,
+                query.CurrentPage);
+
+            query.Genres = this.animes.AllGenres();
+            query.Types = this.animes.AllTypes();
+
+            query.Animes = queryResult.Animes;
+            query.totalAnimes = queryResult.TotalAnimes;
+
+            return View(query);
+        }
 
         [Authorize]
         public IActionResult Add()
@@ -25,7 +42,7 @@ namespace AnimeWorld.Controllers
         [Authorize]
         public IActionResult Add(AnimeFormModel anime)
         {
-            if (!this.animes.TypeExists(anime.TypeId))
+            if (!this.animes.TypeExist(anime.TypeId))
             {
                 this.ModelState.AddModelError(nameof(anime.TypeId), "Type does not exist.");
             }
