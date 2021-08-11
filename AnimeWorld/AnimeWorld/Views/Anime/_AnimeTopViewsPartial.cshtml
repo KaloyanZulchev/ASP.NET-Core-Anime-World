@@ -1,17 +1,19 @@
-﻿<div class="col-lg-4 col-md-6 col-sm-8">
+﻿@model IEnumerable<TopViewsAnime>
+
+<div class="col-lg-4 col-md-6 col-sm-8">
     <div class="product__sidebar">
         <div class="product__sidebar__view">
             <div class="section-title">
                 <h5>Top Views</h5>
             </div>
             <div class="filter__gallery">
-                @for (int i = 0; i < 5; i++)
+                @foreach (var anime in Model)
                 {
                     <div class="product__sidebar__view__item set-bg mix day years"
-                         data-setbg='https://static.posters.cz/image/750webp/84239.webp'>
-                        <div class="ep">18 / ?</div>
-                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                        <h5><a href="#">Boruto: Naruto next generations</a></h5>
+                         data-setbg='@anime.ImageURL'>
+                        <div class="ep">@anime.Epizodes</div>
+                        <div class="view"><i class="fa fa-eye"></i>@anime.Views</div>
+                        <h5><a class="text-warning" asp-controller="Anime" asp-action="Details" asp-route-id="@anime.Id">@anime.NameJPN@(anime.NameEN == null ? "" : " / " + anime.NameEN)</a></h5>
                     </div>
                 }
             </div>

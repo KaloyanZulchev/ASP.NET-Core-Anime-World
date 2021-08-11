@@ -23,9 +23,13 @@ namespace AnimeWorld.Services.Animes
             string searchTerm = null,
             int typeId = 0,
             int genreId = 0,
-            int carsPerPage = 1,
+            int animesPerPage = AnimeServieModel.AimesPerPage,
             AnimeSorting sorting = AnimeSorting.DateCreated,
             int currentPage = 1);
+
+        IEnumerable<TopViewsAnime> TopViewsAnimes();
+
+        IEnumerable<TopRatedAnime> TopRatedAnimes();
 
         bool GenreExist(int genreId);
 

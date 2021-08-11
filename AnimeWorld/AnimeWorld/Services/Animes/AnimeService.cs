@@ -25,7 +25,7 @@ namespace AnimeWorld.Services.Animes
             string searchTerm = null,
             int typeId = 0,
             int genreId = 0,
-            int carsPerPage = 1,
+            int animesPerPage = AnimeServieModel.AimesPerPage,
             AnimeSorting sorting = AnimeSorting.DateCreated,
             int currentPage = 1)
         {
@@ -60,8 +60,8 @@ namespace AnimeWorld.Services.Animes
             var totalAnimes = animeQuery.Count();
 
             var animes = animeQuery
-                .Skip((currentPage - 1) * carsPerPage)
-                .Take(carsPerPage)
+                .Skip((currentPage - 1) * animesPerPage)
+                .Take(animesPerPage)
                 .ProjectTo<AnimeServieModel>(this.mapper)
                 .ToList();
 
@@ -84,6 +84,11 @@ namespace AnimeWorld.Services.Animes
             int typeId,
             string userId)
         {
+            if (nameEN == nameJPN)
+            {
+                nameEN = null;
+            }
+
             var animeData = new Anime
             {
                 NameJPN = nameJPN,
@@ -103,6 +108,24 @@ namespace AnimeWorld.Services.Animes
 
             return animeData.Id;
         }
+
+        public IEnumerable<TopViewsAnime> TopViewsAnimes()
+            => this.data
+                .Animes
+                .OrderByDescending(a => a.Views)
+                .Take(TopViewsAnime.AnimesPerPage)
+                .ProjectTo<TopViewsAnime>(this.mapper)
+                .ToList();
+
+
+        //TO DOO when add ratig refactor this method
+        public IEnumerable<TopRatedAnime> TopRatedAnimes()
+            => this.data
+                .Animes
+                .OrderBy(a => a.Views)
+                .Take(TopRatedAnime.AnimesPerPage)
+                .ProjectTo<TopRatedAnime>(this.mapper)
+                .ToList();
 
         public IEnumerable<AnimeGanreServiceModel> AllGenres()
             => this.data

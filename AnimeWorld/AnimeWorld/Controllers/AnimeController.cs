@@ -26,6 +26,7 @@ namespace AnimeWorld.Controllers
             query.Types = this.animes.AllTypes();
 
             query.Animes = queryResult.Animes;
+            query.TopViewsAnimes = this.animes.TopViewsAnimes();
             query.TotalAnimes = queryResult.TotalAnimes;
 
             return View(query);

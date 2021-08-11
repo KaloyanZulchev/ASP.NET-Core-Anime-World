@@ -1,0 +1,20 @@
+﻿@model IEnumerable<AnimeServieModel>
+
+@foreach (var anime in Model)
+{
+<div class="col-lg-4 col-md-6 col-sm-6">
+    <div class="product__item">
+        <div class="product__item__pic set-bg" data-setbg='@anime.ImageURL'>
+            <div class="ep">@anime.Epizodes</div>
+            <div class="comment"><i class="fa fa-comments"></i>@anime.Comments</div>
+            <div class="view"><i class="fa fa-eye"></i>@anime.Views</div>
+        </div>
+        <div class="product__item__text">
+            <ul>
+                <li>@anime.GenreName</li>
+                <li>@anime.TypeName</li>
+            </ul>
+            <h5><a asp-controller="Anime" asp-action="Details" asp-route-id="@anime.Id">@anime.NameJPN@(anime.NameEN == null ? "" : " / " + anime.NameEN)</a></h5>
+        </div>
+    </div>
+</div>}

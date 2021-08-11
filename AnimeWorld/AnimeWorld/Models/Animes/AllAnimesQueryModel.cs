@@ -24,5 +24,7 @@ namespace AnimeWorld.Models.Animes
         public IEnumerable<AnimeTypeServiceModel> Types { get; set; }
 
         public IEnumerable<AnimeServieModel> Animes { get; set; }
+
+        public IEnumerable<TopViewsAnime> TopViewsAnimes { get; set; }
     }
 }

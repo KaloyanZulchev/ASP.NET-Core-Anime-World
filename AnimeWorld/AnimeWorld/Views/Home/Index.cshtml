@@ -1,46 +1,27 @@
-﻿@{
+﻿@model HomePageAnimesModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <section class="hero">
     <div class="container">
         <div class="hero__slider owl-carousel">
-            <div class="hero__items set-bg" data-setbg='https://static.posters.cz/image/750webp/84239.webp'>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="hero__text">
-                            <div class="label">Adventure</div>
-                            <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                            <p class="badge badge-primary text-wrap">After 30 days of travel across the world...</p>
-                            <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+            @foreach (var anime in Model.TopRatedAnimes)
+            {
+                <div class="hero__items set-bg" data-setbg='@anime.ImageURL'>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="hero__text">
+                                <div class="label">Action</div>
+                                <h2 class="font-weight-bold text-truncate text-warning">@anime.NameJPN@(anime.NameEN == null ? "" : " / " + anime.NameEN)</h2>
+                                <p class="font-weight-bold text-truncate text-warning">@anime.Description</p>
+                                <a asp-controller="Anime" asp-action="Details" asp-route-id="@anime.Id"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="hero__items set-bg" data-setbg='https://static.posters.cz/image/750webp/84239.webp'>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="hero__text">
-                            <div class="label">Adventure</div>
-                            <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                            <p>After 30 days of travel across the world...</p>
-                            <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero__items set-bg" data-setbg='https://static.posters.cz/image/750webp/84239.webp'>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="hero__text">
-                            <div class="label">Adventure</div>
-                            <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                            <p>After 30 days of travel across the world...</p>
-                            <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </section>
@@ -58,34 +39,16 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="btn__all">
-                                <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                <a asp-controller="Anime" asp-action="All" class="primary-btn">View All <span class="arrow_right"></span></a>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        @for (int i = 0; i < 7; i++)
-                        {
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg='https://static.posters.cz/image/750webp/84239.webp'>
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        }
+            <partial name="~/Views/Anime/_ListingAnimesPartial.cshtml" model="@Model.Animes" />
                     </div>
                 </div>
             </div>
-            <partial name="~/Views/Anime/_AnimeTopViewsPartial.cshtml" />
+            <partial name="~/Views/Anime/_AnimeTopViewsPartial.cshtml" model="@Model.TopViewsAnimes" />
         </div>
     </div>
 </section>
