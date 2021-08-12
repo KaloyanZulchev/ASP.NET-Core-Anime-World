@@ -1,10 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AnimeWorld.Data.Models
 {
     public class User : IdentityUser
     {
+        [Required]
+        [Url]
+        public string ImageURL { get; set; }
+
         public ICollection<Anime> AddedAnimes { get; init; } = new HashSet<Anime>();
 
         public ICollection<AnimeUser> ListedAnimes { get; init; } = new HashSet<AnimeUser>();

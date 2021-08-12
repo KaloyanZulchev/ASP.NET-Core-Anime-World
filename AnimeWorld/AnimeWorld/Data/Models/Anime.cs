@@ -28,7 +28,6 @@ namespace AnimeWorld.Data.Models
         [Required]
         public string ImageURL { get; set; }
 
-        [Required]
         public string TrailerURL { get; set; }
 
         public DateTime Aired { get; set; }
