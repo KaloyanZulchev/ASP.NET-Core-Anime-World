@@ -32,5 +32,11 @@
         {
             public const int NameMaxLength = 50;
         }
+
+        public class User
+        {
+            public const int UserNameMinLength = 2;
+            public const int UserNameMaxLength = 50;
+        }
     }
 }

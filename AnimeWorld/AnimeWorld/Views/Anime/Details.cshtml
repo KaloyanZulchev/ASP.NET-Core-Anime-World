@@ -76,18 +76,17 @@
                     </div>
                     @foreach (var comment in Model.Comments)
                     {
-                        <div class="anime__review__item">
-                            <div class="anime__review__item__pic">
-                                <img src="@comment.UserImageURL" alt="">
-                            </div>
-                            <div class="anime__review__item__text">
-                                <h6>@comment.UserName - <span>1 Hour ago</span></h6>
-                                <p>
-                                    @comment.Content
-                                </p>
-                            </div>
-                        </div>
-                    }
+        <div class="anime__review__item">
+            <div class="anime__review__item__pic">
+                <img src="@comment.UserImageURL" alt="">
+            </div>
+            <div class="anime__review__item__text">
+                <h6>@comment.UserName - <span>1 Hour ago</span></h6>
+                <p>
+                    @comment.Content
+                </p>
+            </div>
+        </div>}
                 </div>
                 @if (this.SignInManager.IsSignedIn(this.User))
                 {
@@ -100,10 +99,10 @@
             <input value="@Model.Anime.Id" name="AnimeId" id="AnimeId" style="display:none" />
             <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
         </form>
-    </div>}else 
-                { 
-                    <h5 style="color:#ffffff">To write comments first <a asp-area="Identity" asp-page="/Account/Login">LogIn.</a></h5>
-                }
+    </div>}
+else
+{
+<h5 style="color:#ffffff">To write comments first <a asp-area="Identity" asp-page="/Account/Login">LogIn.</a></h5>}
             </div>
             <div class="col-lg-4 col-md-4">
                 <div class="anime__details__sidebar">
@@ -135,5 +134,9 @@
         </div>
     </div>
 </section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 
 

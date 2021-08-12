@@ -6,7 +6,6 @@ namespace AnimeWorld.Data.Models
 {
     public class User : IdentityUser
     {
-        [Required]
         [Url]
         public string ImageURL { get; set; }
 
