@@ -72,6 +72,11 @@ namespace AnimeWorld.Controllers
 
         public IActionResult Details(int id)
         {
+            if (!this.animes.IsValidId(id))
+            {
+                return BadRequest();
+            }
+
             var model = this.animes.Details(id);
 
             return View(model);

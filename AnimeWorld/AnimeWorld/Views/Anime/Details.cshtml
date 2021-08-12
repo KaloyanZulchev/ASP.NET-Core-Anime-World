@@ -135,8 +135,9 @@
                             <div class="section-title">
                                 <h5>Your Comment</h5>
                             </div>
-                            <form action="#">
-                                <textarea placeholder="Your Comment"></textarea>
+                            <form method="post" asp-controller="Comment" asp-action="Create">
+                                <textarea name="Content" id="Content" placeholder="Your Comment"></textarea>
+                                <input value="@Model.Id" name="AnimeId" id="AnimeId" style="display:none" />
                                 <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
                             </form>
                         </div>

@@ -40,5 +40,7 @@ namespace AnimeWorld.Services.Animes
         IEnumerable<AnimeGanreServiceModel> AllGenres();
 
         IEnumerable<AnimeTypeServiceModel> AllTypes();
+
+        bool IsValidId(int id);
     }
 }

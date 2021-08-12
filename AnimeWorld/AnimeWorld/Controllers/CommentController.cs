@@ -1,0 +1,41 @@
+﻿using AnimeWorld.Infrastructure.Extensions;
+using AnimeWorld.Models.Comments;
+using AnimeWorld.Services.Animes;
+using AnimeWorld.Services.Commets;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AnimeWorld.Controllers
+{
+    public class CommentController : Controller
+    {
+        private readonly ICommentService commets;
+        private readonly IAnimeService animes;
+
+        public CommentController(ICommentService commets, IAnimeService animes)
+        {
+            this.commets = commets;
+            this.animes = animes;
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Create(CommentFormModel comment)
+        {
+            if (!this.animes.IsValidId(comment.AnimeId))
+            {
+                return BadRequest();
+            }
+
+            if (this.ModelState.IsValid)
+            {
+                this.commets.Create(
+                    comment.AnimeId,
+                    this.User.Id(),
+                    comment.Content);
+            }
+
+            return RedirectToAction("Details", "Anime", new { id = comment.AnimeId});
+        }
+    }
+}

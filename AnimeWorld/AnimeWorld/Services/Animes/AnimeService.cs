@@ -157,5 +157,10 @@ namespace AnimeWorld.Services.Animes
             => this.data
                 .Types
                 .Any(t => t.Id == typeId);
+
+        public bool IsValidId(int id)
+            => this.data
+                .Animes
+                .Any(a => a.Id == id);
     }
 }
