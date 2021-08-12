@@ -69,5 +69,12 @@ namespace AnimeWorld.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult Details(int id)
+        {
+            var model = this.animes.Details(id);
+
+            return View(model);
+        }
     }
 }

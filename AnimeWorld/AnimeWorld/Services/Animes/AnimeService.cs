@@ -13,12 +13,14 @@ namespace AnimeWorld.Services.Animes
     public class AnimeService : IAnimeService
     {
         private readonly AnimeWorldDbContext data;
-        private readonly IConfigurationProvider mapper;
+        private readonly IConfigurationProvider configuration;
+        private readonly IMapper mapper;
 
         public AnimeService(AnimeWorldDbContext data, IMapper mapper)
         {
             this.data = data;
-            this.mapper = mapper.ConfigurationProvider;
+            this.configuration = mapper.ConfigurationProvider;
+            this.mapper = mapper;
         }
 
         public AnimeQueryServieModel All(
@@ -62,7 +64,7 @@ namespace AnimeWorld.Services.Animes
             var animes = animeQuery
                 .Skip((currentPage - 1) * animesPerPage)
                 .Take(animesPerPage)
-                .ProjectTo<AnimeServieModel>(this.mapper)
+                .ProjectTo<AnimeServieModel>(this.configuration)
                 .ToList();
 
             return new AnimeQueryServieModel
@@ -109,12 +111,19 @@ namespace AnimeWorld.Services.Animes
             return animeData.Id;
         }
 
+        public AnimeDetailsServcieModel Details(int id)
+            => this.data
+                .Animes
+                .Where(a => a.Id == id)
+                .ProjectTo<AnimeDetailsServcieModel>(this.configuration)
+                .FirstOrDefault();
+
         public IEnumerable<TopViewsAnime> TopViewsAnimes()
             => this.data
                 .Animes
                 .OrderByDescending(a => a.Views)
                 .Take(TopViewsAnime.AnimesPerPage)
-                .ProjectTo<TopViewsAnime>(this.mapper)
+                .ProjectTo<TopViewsAnime>(this.configuration)
                 .ToList();
 
 
@@ -124,19 +133,19 @@ namespace AnimeWorld.Services.Animes
                 .Animes
                 .OrderBy(a => a.Views)
                 .Take(TopRatedAnime.AnimesPerPage)
-                .ProjectTo<TopRatedAnime>(this.mapper)
+                .ProjectTo<TopRatedAnime>(this.configuration)
                 .ToList();
 
         public IEnumerable<AnimeGanreServiceModel> AllGenres()
             => this.data
                 .Genres
-                .ProjectTo<AnimeGanreServiceModel>(this.mapper)
+                .ProjectTo<AnimeGanreServiceModel>(this.configuration)
                 .ToList();
 
         public IEnumerable<AnimeTypeServiceModel> AllTypes()
             => this.data
                 .Types
-                .ProjectTo<AnimeTypeServiceModel>(this.mapper)
+                .ProjectTo<AnimeTypeServiceModel>(this.configuration)
                 .ToList();
 
         public bool GenreExist(int genreId)

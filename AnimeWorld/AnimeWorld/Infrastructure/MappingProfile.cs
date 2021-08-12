@@ -18,6 +18,11 @@ namespace AnimeWorld.Infrastructure
             this.CreateMap<Anime, AnimeServieModel>()
                 .ForMember(c => c.Comments, cfg => cfg.MapFrom(c => c.Comments.Count))
                 .ForMember(c => c.GenreName, cfg => cfg.MapFrom(c => c.Genres.FirstOrDefault().Genre.Name));
+
+            this.CreateMap<Anime, AnimeDetailsServcieModel>()
+                .ForMember(c => c.TypeName, cfg => cfg.MapFrom(c => c.Type.Name))
+                .ForMember(c => c.Producers, cfg => cfg.MapFrom(c => c.Producers.Select(p => p.Producer.Name)))
+                .ForMember(c => c.Genres, cfg => cfg.MapFrom(c => c.Genres.Select(g => g.Genre.Name)));
         }
     }
 }

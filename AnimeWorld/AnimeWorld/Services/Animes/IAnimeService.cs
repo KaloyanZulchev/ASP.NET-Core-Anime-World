@@ -27,6 +27,8 @@ namespace AnimeWorld.Services.Animes
             AnimeSorting sorting = AnimeSorting.DateCreated,
             int currentPage = 1);
 
+        AnimeDetailsServcieModel Details(int id);
+
         IEnumerable<TopViewsAnime> TopViewsAnimes();
 
         IEnumerable<TopRatedAnime> TopRatedAnimes();
