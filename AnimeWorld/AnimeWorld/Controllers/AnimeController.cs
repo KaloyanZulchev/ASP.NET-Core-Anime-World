@@ -42,7 +42,8 @@ namespace AnimeWorld.Controllers
         public IActionResult Add()
             => View(new AnimeFormModel
                 {
-                    Types = this.animes.AllTypes()
+                    Types = this.animes.AllTypes(),
+                    Geners = this.animes.AllGenres()
                 });
 
         [HttpPost]
@@ -54,9 +55,15 @@ namespace AnimeWorld.Controllers
                 this.ModelState.AddModelError(nameof(anime.TypeId), "Type does not exist.");
             }
 
+            if (!this.animes.GenreExist(anime.GenerId))
+            {
+                this.ModelState.AddModelError(nameof(anime.GenerId), "Genre does not exist.");
+            }
+
             if (!this.ModelState.IsValid)
             {
                 anime.Types = this.animes.AllTypes();
+                anime.Geners = this.animes.AllGenres();
 
                 return View(anime);
             }
@@ -71,6 +78,7 @@ namespace AnimeWorld.Controllers
                 anime.Aired,
                 anime.Finished,
                 anime.TypeId,
+                anime.GenerId,
                 this.User.Id());
 
             return RedirectToAction("Index", "Home");

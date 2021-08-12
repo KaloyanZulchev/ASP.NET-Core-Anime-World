@@ -17,6 +17,7 @@ namespace AnimeWorld.Services.Animes
             DateTime aired,
             DateTime? finished,
             int typeId,
+            int genreId,
             string userId);
 
         AnimeQueryServieModel All(

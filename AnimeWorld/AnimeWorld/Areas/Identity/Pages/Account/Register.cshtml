@@ -23,25 +23,22 @@
                 <div class="login__form">
                     <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
                         <div asp-validation-summary="All" class="text-danger"></div>
+                        <br />
                         <div class="input__item">
                             <input asp-for="Input.Email" placeholder="Email address">
                             <span class="icon_mail"></span>
-                            <span asp-validation-for="Input.Email" class="text-danger"></span>
                         </div>
                         <div class="input__item">
                             <input asp-for="Input.UserName" placeholder="Your Name">
                             <span class="icon_profile"></span>
-                            <span asp-validation-for="Input.UserName" class="text-danger"></span>
                         </div>
                         <div class="input__item">
                             <input asp-for="Input.Password" placeholder="Password">
                             <span class="icon_lock"></span>
-                            <span asp-validation-for="Input.Password" class="text-danger"></span>
                         </div>
                         <div class="input__item">
                             <input asp-for="Input.ConfirmPassword" placeholder="Confirm Password">
                             <span class="icon_lock"></span>
-                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                         </div>
                         <button type="submit" class="site-btn">Register</button>
                     </form>

@@ -30,7 +30,6 @@ namespace AnimeWorld.Models.Animes
         [Url]
         public string ImageURL { get; set; }
 
-        [Required]
         [Url]
         public string TrailerURL { get; set; }
 
@@ -38,8 +37,14 @@ namespace AnimeWorld.Models.Animes
 
         public DateTime? Finished { get; set; }
 
+        [Display(Name = "Type")]
         public int TypeId { get; set; }
 
+        [Display(Name = "Gener")]
+        public int GenerId { get; set; }
+
         public IEnumerable<AnimeTypeServiceModel> Types { get; set; }
+
+        public IEnumerable<AnimeGanreServiceModel> Geners { get; set; }
     }
 }

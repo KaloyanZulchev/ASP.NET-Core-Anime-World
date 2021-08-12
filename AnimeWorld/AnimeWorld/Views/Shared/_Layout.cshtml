@@ -47,8 +47,15 @@
                                         <li><a href="./anime-watching.html">Anime Watching</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
                                         <li><a asp-controller="Anime" asp-action="Add">Add Anime</a></li>
-                                        <li><a asp-area="Identity" asp-page="/Account/Register">Sign Up</a></li>
-                                        <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+                                        @if (this.User.Identity.IsAuthenticated)
+                                        {
+                                            <li><a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Logout</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><a asp-area="Identity" asp-page="/Account/Register">Sign Up</a></li>
+                                            <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+                                        }
                                     </ul>
                                 </li>
                                 <li><a href="./blog.html">Our Blog</a></li>
