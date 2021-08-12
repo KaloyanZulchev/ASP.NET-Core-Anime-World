@@ -1,6 +1,7 @@
 ﻿using AnimeWorld.Infrastructure.Extensions;
 using AnimeWorld.Models.Animes;
 using AnimeWorld.Services.Animes;
+using AnimeWorld.Services.Commets;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,8 +10,13 @@ namespace AnimeWorld.Controllers
     public class AnimeController : Controller
     {
         private readonly IAnimeService animes;
+        private readonly ICommentService comments;
 
-        public AnimeController(IAnimeService animes) => this.animes = animes;
+        public AnimeController(IAnimeService anime, ICommentService comments)
+        {
+            this.animes = anime;
+            this.comments = comments;
+        }
 
         public IActionResult All([FromQuery] AllAnimesQueryModel query)
         {
@@ -77,9 +83,11 @@ namespace AnimeWorld.Controllers
                 return BadRequest();
             }
 
-            var model = this.animes.Details(id);
-
-            return View(model);
+            return View(new AnimeDetailsViewModel()
+            {
+                Anime = this.animes.Details(id),
+                Comments = this.comments.AllByAnimeId(id)
+            });
         }
     }
 }
