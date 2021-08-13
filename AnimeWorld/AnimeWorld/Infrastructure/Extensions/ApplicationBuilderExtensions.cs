@@ -8,6 +8,7 @@ using System;
 using System.Linq;
 using System.Globalization;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 using AnimeType = AnimeWorld.Data.Models.Type;
 
@@ -64,7 +65,7 @@ namespace AnimeWorld.Infrastructure.Extensions
                     {
                         Id = "rex_k@abv.bgrex_k@abv.bg",
                         Email = adminEmail,
-                        UserName = adminEmail,
+                        UserName = "Admin",
                     };
 
                     await userManager.CreateAsync(user, adminPassword);
@@ -104,7 +105,8 @@ In order to escape Aincrad, Kirito will now have to interact and cooperate with 
                     TrailerURL = "https://www.youtube.com/embed/6ohYYtxfDCg",
                     TypeId = 1,
                     Views = new Random().Next(50, 200000),
-                    UserId = "rex_k@abv.bgrex_k@abv.bg"
+                    UserId = "rex_k@abv.bgrex_k@abv.bg",
+                    Genres = new List<AnimeGenre>() { new AnimeGenre() {GenreId = 28} }
                 },
                 new Anime
                 {

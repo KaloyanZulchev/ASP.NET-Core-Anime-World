@@ -1,5 +1,6 @@
 ﻿using AnimeWorld.Services.Animes.Models;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AnimeWorld.Models.Animes
 {
@@ -9,8 +10,10 @@ namespace AnimeWorld.Models.Animes
 
         public int CurrentPage { get; init; } = 1;
 
+        [Display(Name = "Type")]
         public int TypeId { get; init; }
 
+        [Display(Name = "Genre")]
         public int GenreId { get; init; }
 
         public string SearchTerm { get; init; }
