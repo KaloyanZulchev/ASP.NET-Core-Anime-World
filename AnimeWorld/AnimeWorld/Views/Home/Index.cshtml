@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
-                                <div class="label">Action</div>
+                                <div class="label">@anime.Genre</div>
                                 <h2 class="font-weight-bold text-truncate text-warning">@anime.NameJPN@(anime.NameEN == null ? "" : " / " + anime.NameEN)</h2>
                                 <p class="font-weight-bold text-truncate text-warning">@anime.Description</p>
                                 <a asp-controller="Anime" asp-action="Details" asp-route-id="@anime.Id"><span>View More</span> <i class="fa fa-angle-right"></i></a>

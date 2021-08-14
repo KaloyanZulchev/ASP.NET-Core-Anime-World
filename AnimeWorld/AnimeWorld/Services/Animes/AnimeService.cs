@@ -135,6 +135,47 @@ namespace AnimeWorld.Services.Animes
                 .ProjectTo<TopRatedAnime>(this.mapper)
                 .ToList();
 
+        public IEnumerable<SimilarAnimeServiceModel> SimilarAnimes(int id)
+        {
+            var producerName = this.data
+                .Animes
+                .Select(a => new
+                {
+                    Id = a.Id,
+                    Producers = a.Producers.Select(p => new
+                    {
+                        Name = p.Producer.Name
+                    })
+                })
+                .Where(a => a.Id == id)
+                .FirstOrDefault()
+                .Producers
+                .FirstOrDefault()
+                .Name;
+
+            var animes = this.data
+                            .Animes
+                            .Where(a =>
+                                a.Producers.FirstOrDefault().Producer.Name == producerName
+                                && a.Id != id)
+                            .Take(SimilarAnimeServiceModel.AnimesPerPage)
+                            .ProjectTo<SimilarAnimeServiceModel>(this.mapper)
+                            .ToList();
+
+            if (animes.Count < SimilarAnimeServiceModel.AnimesPerPage)
+            {
+                animes.AddRange(this.data
+                    .Animes
+                    .Where(a =>
+                        a.Producers.FirstOrDefault().Producer.Name != producerName)
+                    .Take(SimilarAnimeServiceModel.AnimesPerPage - animes.Count)
+                    .ProjectTo<SimilarAnimeServiceModel>(this.mapper)
+                    .ToList());
+            }
+
+            return animes;
+        }
+
         public IEnumerable<AnimeGanreServiceModel> AllGenres()
             => this.data
                 .Genres

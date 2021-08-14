@@ -34,6 +34,8 @@ namespace AnimeWorld.Services.Animes
 
         IEnumerable<TopRatedAnime> TopRatedAnimes();
 
+        IEnumerable<SimilarAnimeServiceModel> SimilarAnimes(int id);
+
         bool GenreExist(int genreId);
 
         bool TypeExist(int typeId);

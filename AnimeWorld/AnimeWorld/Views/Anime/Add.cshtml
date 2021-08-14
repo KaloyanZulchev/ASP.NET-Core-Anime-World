@@ -51,6 +51,11 @@
                             <span asp-validation-for="TrailerURL" class="small text-danger"></span>
                         </div>
                         <div class="input__item">
+                            <label asp-for="Producer"></label>
+                            <input asp-for="Producer">
+                            <span asp-validation-for="Producer" class="small text-danger"></span>
+                        </div>
+                        <div class="input__item">
                             <label asp-for="Aired"></label>
                             <input type="date" asp-for="Aired" value="@DateTime.UtcNow" min="@AnimeFormModel.MinDate" max="@AnimeFormModel.MaxDate">
                             <span asp-validation-for="Aired" class="small text-danger"></span>
@@ -65,20 +70,16 @@
                             <select asp-for="TypeId" class="w-100">
                                 @foreach (var type in Model.Types)
                                 {
-                                    <option value="@type.Id">@type.Name</option>
-                                }
+                    <option value="@type.Id">@type.Name</option>}
                             </select>
-                            <span asp-validation-for="TypeId" class="small text-danger"></span>
                         </div>
                         <div class="input__item">
                             <label asp-for="GenerId"></label>
                             <select asp-for="GenerId" class="w-100">
                                 @foreach (var genre in Model.Geners)
                                 {
-                                    <option value="@genre.Id">@genre.Name</option>
-                                }
+                    <option value="@genre.Id">@genre.Name</option>}
                             </select>
-                            <span asp-validation-for="GenerId" class="small text-danger"></span>
                         </div>
                         <br />
                         <button type="submit" class="site-btn">Add</button>

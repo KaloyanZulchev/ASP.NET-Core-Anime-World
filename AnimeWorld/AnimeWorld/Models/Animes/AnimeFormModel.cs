@@ -33,6 +33,11 @@ namespace AnimeWorld.Models.Animes
         [Url]
         public string TrailerURL { get; set; }
 
+        [Required]
+        [StringLength(Data.DataConstants.Producer.NameMaxLength,
+            MinimumLength = Data.DataConstants.Producer.NameMinLength)]
+        public string Producer { get; set; }
+
         public DateTime Aired { get; set; }
 
         public DateTime? Finished { get; set; }

@@ -13,6 +13,7 @@ namespace AnimeWorld.Infrastructure
             this.CreateMap<Type, AnimeTypeServiceModel>();
             this.CreateMap<Genre, AnimeGanreServiceModel>();
             this.CreateMap<Anime, TopViewsAnime>();
+            this.CreateMap<Anime, SimilarAnimeServiceModel>();
             this.CreateMap<Anime, TopRatedAnime>()
                 .ForMember(c => c.Genre, cfg => cfg.MapFrom(c => c.Genres.FirstOrDefault().Genre.Name));
 

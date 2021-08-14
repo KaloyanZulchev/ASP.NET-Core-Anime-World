@@ -27,6 +27,7 @@ namespace AnimeWorld.Infrastructure.Extensions
             MigrateDatabase(services);
 
             SeedAdministrator(services);
+            SeedProducers(services);
             SeedTypes(services);
             SeedGenres(services);
             SeedAnimes(services);
@@ -76,6 +77,23 @@ namespace AnimeWorld.Infrastructure.Extensions
                 .GetResult();
         }
 
+        private static void SeedProducers(IServiceProvider services)
+        {
+            var data = services.GetRequiredService<AnimeWorldDbContext>();
+
+            if (data.Producers.Any())
+            {
+                return;
+            }
+
+            data.Producers.AddRange(new[]
+            {
+                new Producer {Name = "Aniplex"},
+                new Producer {Name = "Genco"},
+                new Producer {Name = "DAX Production"}
+            });
+        }
+
         private static void SeedAnimes(IServiceProvider services)
         {
             var data = services.GetRequiredService<AnimeWorldDbContext>();
@@ -106,7 +124,8 @@ In order to escape Aincrad, Kirito will now have to interact and cooperate with 
                     TypeId = 1,
                     Views = new Random().Next(50, 200000),
                     UserId = "rex_k@abv.bgrex_k@abv.bg",
-                    Genres = new List<AnimeGenre>() { new AnimeGenre() {GenreId = 28} }
+                    Genres = new List<AnimeGenre>() { new AnimeGenre() {GenreId = 28} },
+                    Producers = new List<AnimeProducer>() {new AnimeProducer() { ProducerId = 1} }
                 },
                 new Anime
                 {
@@ -122,7 +141,9 @@ Once inside, Kirito meets Sinon, a highly skilled sniper afflicted by a traumati
                     TrailerURL = "https://www.youtube.com/embed/Wyi8ITQBeNw",
                     TypeId = 1,
                     Views = new Random().Next(50, 200000),
-                    UserId = "rex_k@abv.bgrex_k@abv.bg"
+                    UserId = "rex_k@abv.bgrex_k@abv.bg",
+                    Genres = new List<AnimeGenre>() { new AnimeGenre() {GenreId = 28} },
+                    Producers = new List<AnimeProducer>() {new AnimeProducer() { ProducerId = 2} }
                 },
                 new Anime
                 {
@@ -139,7 +160,9 @@ Following the new craze, Kirito's friends dive into the game, and despite his re
                     TrailerURL = "https://www.youtube.com/embed/32FLqOWjUfI",
                     TypeId = 6,
                     Views = new Random().Next(50, 200000),
-                    UserId = "rex_k@abv.bgrex_k@abv.bg"
+                    UserId = "rex_k@abv.bgrex_k@abv.bg",
+                    Genres = new List<AnimeGenre>() { new AnimeGenre() {GenreId = 28} },
+                    Producers = new List<AnimeProducer>() {new AnimeProducer() { ProducerId = 3} }
                 },
                 new Anime
                 {
@@ -155,7 +178,9 @@ Now, Naruto is a hyperactive and knuckle-headed ninja still living in Konohagaku
                     TrailerURL = "https://youtu.be/j2hiC9BmJlQ",
                     TypeId = 1,
                     Views = new Random().Next(50, 200000),
-                    UserId = "rex_k@abv.bgrex_k@abv.bg"
+                    UserId = "rex_k@abv.bgrex_k@abv.bg",
+                    Genres = new List<AnimeGenre>() { new AnimeGenre() {GenreId = 28} },
+                    Producers = new List<AnimeProducer>() {new AnimeProducer() { ProducerId = 1} }
                 },
                 new Anime
                 {
@@ -171,7 +196,9 @@ Although Naruto is older and sinister events loom on the horizon, he has changed
                     TrailerURL = "https://youtu.be/1dy2zPPrKD0",
                     TypeId = 1,
                     Views = new Random().Next(50, 200000),
-                    UserId = "rex_k@abv.bgrex_k@abv.bg"
+                    UserId = "rex_k@abv.bgrex_k@abv.bg",
+                    Genres = new List<AnimeGenre>() { new AnimeGenre() {GenreId = 28} },
+                    Producers = new List<AnimeProducer>() {new AnimeProducer() { ProducerId = 2} }
                 },
                 new Anime
                 {
@@ -187,7 +214,9 @@ When he finally arrives back home the next day, he is met with a horrifying sigh
                     TrailerURL = "https://youtu.be/6vMuWuWlW4I",
                     TypeId = 1,
                     Views = new Random().Next(50, 200000),
-                    UserId = "rex_k@abv.bgrex_k@abv.bg"
+                    UserId = "rex_k@abv.bgrex_k@abv.bg",
+                    Genres = new List<AnimeGenre>() { new AnimeGenre() {GenreId = 28} },
+                    Producers = new List<AnimeProducer>() {new AnimeProducer() { ProducerId = 3} }
                 },
                 new Anime
                 {
@@ -203,7 +232,9 @@ Unbeknownst to them, the demonic forces responsible for the disappearances have 
                     TrailerURL = "https://youtu.be/PrZ0O8Qp18s",
                     TypeId = 6,
                     Views = new Random().Next(50, 200000),
-                    UserId = "rex_k@abv.bgrex_k@abv.bg"
+                    UserId = "rex_k@abv.bgrex_k@abv.bg",
+                    Genres = new List<AnimeGenre>() { new AnimeGenre() {GenreId = 28} },
+                    Producers = new List<AnimeProducer>() {new AnimeProducer() { ProducerId = 1} }
                 },
                 new Anime
                 {
@@ -219,7 +250,9 @@ After witnessing a horrific personal loss at the hands of the invading creatures
                     TrailerURL = "https://youtu.be/LHtdKWJdif4",
                     TypeId = 1,
                     Views = new Random().Next(50, 200000),
-                    UserId = "rex_k@abv.bgrex_k@abv.bg"
+                    UserId = "rex_k@abv.bgrex_k@abv.bg",
+                    Genres = new List<AnimeGenre>() { new AnimeGenre() {GenreId = 28} },
+                    Producers = new List<AnimeProducer>() {new AnimeProducer() { ProducerId = 2} }
                 },
                 new Anime
                 {
@@ -236,7 +269,9 @@ Yuuji experiences first-hand the threat these Curses pose to society as he disco
                     TrailerURL = "https://youtu.be/4A_X-Dvl0ws",
                     TypeId = 1,
                     Views = new Random().Next(50, 200000),
-                    UserId = "rex_k@abv.bgrex_k@abv.bg"
+                    UserId = "rex_k@abv.bgrex_k@abv.bg",
+                    Genres = new List<AnimeGenre>() { new AnimeGenre() {GenreId = 28} },
+                    Producers = new List<AnimeProducer>() {new AnimeProducer() { ProducerId = 3} }
                 },
                 new Anime
                 {
@@ -250,7 +285,9 @@ Yuuji experiences first-hand the threat these Curses pose to society as he disco
                     TrailerURL = "https://youtu.be/eQXrx39ImTI",
                     TypeId = 1,
                     Views = new Random().Next(50, 200000),
-                    UserId = "rex_k@abv.bgrex_k@abv.bg"
+                    UserId = "rex_k@abv.bgrex_k@abv.bg",
+                    Genres = new List<AnimeGenre>() { new AnimeGenre() {GenreId = 28} },
+                    Producers = new List<AnimeProducer>() {new AnimeProducer() { ProducerId = 1} }
                 },
                 new Anime
                 {
@@ -268,7 +305,9 @@ As Souma and his new schoolmates struggle to survive the extreme lifestyle of To
                     TrailerURL = "https://youtu.be/H-4Qyr_3V-E",
                     TypeId = 1,
                     Views = new Random().Next(50, 200000),
-                    UserId = "rex_k@abv.bgrex_k@abv.bg"
+                    UserId = "rex_k@abv.bgrex_k@abv.bg",
+                    Genres = new List<AnimeGenre>() { new AnimeGenre() {GenreId = 28} },
+                    Producers = new List<AnimeProducer>() {new AnimeProducer() { ProducerId = 2} }
                 },
             });
 

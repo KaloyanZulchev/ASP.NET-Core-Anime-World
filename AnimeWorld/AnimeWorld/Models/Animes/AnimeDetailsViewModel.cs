@@ -8,6 +8,8 @@ namespace AnimeWorld.Models.Animes
     {
         public AnimeDetailsServcieModel Anime { get; set; }
 
+        public IEnumerable<SimilarAnimeServiceModel> SimilarAnimes { get; set; }
+
         public IEnumerable<CommentServiceModel> Comments { get; set; }
     }
 }

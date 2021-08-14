@@ -94,6 +94,7 @@ namespace AnimeWorld.Controllers
             return View(new AnimeDetailsViewModel()
             {
                 Anime = this.animes.Details(id),
+                SimilarAnimes = this.animes.SimilarAnimes(id),
                 Comments = this.comments.AllByAnimeId(id)
             });
         }
