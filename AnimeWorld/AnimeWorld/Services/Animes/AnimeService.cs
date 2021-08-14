@@ -188,6 +188,13 @@ namespace AnimeWorld.Services.Animes
                 .ProjectTo<AnimeTypeServiceModel>(this.mapper)
                 .ToList();
 
+        public void IncreaseViews(int id)
+        {
+            this.data.Animes.Find(id).Views++;
+
+            this.data.SaveChanges();
+        }
+
         public bool GenreExist(int genreId)
             => this.data
                 .Genres

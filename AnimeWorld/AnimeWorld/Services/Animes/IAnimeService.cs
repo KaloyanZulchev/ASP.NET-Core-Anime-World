@@ -40,6 +40,8 @@ namespace AnimeWorld.Services.Animes
 
         bool TypeExist(int typeId);
 
+        void IncreaseViews(int id);
+
         IEnumerable<AnimeGanreServiceModel> AllGenres();
 
         IEnumerable<AnimeTypeServiceModel> AllTypes();

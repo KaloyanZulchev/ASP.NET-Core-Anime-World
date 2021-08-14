@@ -91,6 +91,8 @@ namespace AnimeWorld.Controllers
                 return BadRequest();
             }
 
+            this.animes.IncreaseViews(id);
+
             return View(new AnimeDetailsViewModel()
             {
                 Anime = this.animes.Details(id),
