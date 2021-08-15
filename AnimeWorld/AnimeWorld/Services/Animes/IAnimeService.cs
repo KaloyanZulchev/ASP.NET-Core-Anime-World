@@ -14,6 +14,7 @@ namespace AnimeWorld.Services.Animes
             int epizodes,
             string imageURL,
             string trailerURL,
+            string producerName,
             DateTime aired,
             DateTime? finished,
             int typeId,

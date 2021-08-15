@@ -79,6 +79,7 @@ namespace AnimeWorld.Services.Animes
             int epizodes,
             string imageURL,
             string trailerURL,
+            string producerName,
             DateTime aired,
             DateTime? finished,
             int typeId,
@@ -90,6 +91,13 @@ namespace AnimeWorld.Services.Animes
                 nameEN = null;
             }
 
+            Producer producer = this.data.Producers.FirstOrDefault(p => p.Name == producerName);
+
+            if (producer == null)
+            {
+                producer = new Producer() { Name = producerName };
+            }
+
             var animeData = new Anime
             {
                 NameJPN = nameJPN,
@@ -98,9 +106,11 @@ namespace AnimeWorld.Services.Animes
                 Epizodes = epizodes,
                 ImageURL = imageURL,
                 TrailerURL = trailerURL,
+                Producers = new List<AnimeProducer>() { new AnimeProducer() { Producer = producer } },
                 Aired = aired,
                 Finished = finished,
                 TypeId = typeId,
+                Genres = new List<AnimeGenre>() { new AnimeGenre() { GenreId = genreId} },
                 UserId = userId
             };
 
