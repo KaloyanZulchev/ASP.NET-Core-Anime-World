@@ -105,8 +105,10 @@ namespace AnimeWorld.Infrastructure.Extensions
             }
 
 
-            data.Animes.AddRange(new[]
+            for (int i = 0; i < 100; i++)
             {
+                data.Animes.AddRange(new[]
+           {
                 new Anime
                 {
                     NameJPN = "Sword Art Online",
@@ -310,6 +312,7 @@ As Souma and his new schoolmates struggle to survive the extreme lifestyle of To
                     Producers = new List<AnimeProducer>() {new AnimeProducer() { ProducerId = 2} }
                 },
             });
+            }
 
             data.SaveChanges();
         }

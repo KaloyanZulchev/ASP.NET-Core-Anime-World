@@ -75,6 +75,7 @@ namespace AnimeWorld.Controllers
                 anime.Epizodes,
                 anime.ImageURL,
                 anime.TrailerURL,
+                anime.Producer,
                 anime.Aired,
                 anime.Finished,
                 anime.TypeId,

@@ -68,7 +68,13 @@
 
                     var maxPage = Math.Ceiling((double)Model.TotalAnimes / AllAnimesQueryModel.AnimesPerPage);
 
-                    var pageStart = (Model.CurrentPage - 5) < 1 ? 1 : Model.CurrentPage - 5;
+                    var pageStart = (Model.CurrentPage - 5) < 0 ? 1 : Model.CurrentPage;
+
+                    if (pageStart + 4 > maxPage)
+                    {
+                        pageStart = int.Parse((maxPage - 4).ToString());
+                    }
+
                     var pageEnd = (pageStart + 4) > maxPage ? maxPage : pageStart + 4;
                     }
             <div class="product__pagination">

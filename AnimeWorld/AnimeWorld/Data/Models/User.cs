@@ -14,5 +14,7 @@ namespace AnimeWorld.Data.Models
         public ICollection<AnimeUser> ListedAnimes { get; init; } = new HashSet<AnimeUser>();
 
         public ICollection<Comment> Comments { get; init; } = new HashSet<Comment>();
+
+        public ICollection<Rateing> Rateings { get; init; } = new HashSet<Rateing>();
     }
 }

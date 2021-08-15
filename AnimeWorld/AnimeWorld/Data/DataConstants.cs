@@ -39,5 +39,11 @@
             public const int UserNameMinLength = 2;
             public const int UserNameMaxLength = 50;
         }
+
+        public class Rating
+        {
+            public const int MinStars = 1;
+            public const int MaxStars = 5;
+        }
     }
 }
