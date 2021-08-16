@@ -13,6 +13,10 @@
             <ul>
                 <li>@anime.GenreName</li>
                 <li>@anime.TypeName</li>
+                @if (anime.IsOnMinePage)
+                {
+                    <li class="btn btn-success"><a class="text-white" asp-controller="Anime" asp-action="Edit" asp-route-id="@anime.Id">Edit</a></li>
+                }
             </ul>
             <h5><a asp-controller="Anime" asp-action="Details" asp-route-id="@anime.Id">@anime.NameJPN@(anime.NameEN == null ? "" : " / " + anime.NameEN)</a></h5>
         </div>

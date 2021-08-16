@@ -21,5 +21,7 @@
         public int Views { get; init; }
 
         public int Comments { get; init; }
+
+        public bool IsOnMinePage { get; set; } = false;
     }
 }

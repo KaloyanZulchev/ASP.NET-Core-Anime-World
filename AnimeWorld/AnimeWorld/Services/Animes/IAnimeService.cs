@@ -22,12 +22,13 @@ namespace AnimeWorld.Services.Animes
             string userId);
 
         AnimeQueryServieModel All(
+            string userId = null,
+            int currentPage = 1,
             string searchTerm = null,
             int typeId = 0,
             int genreId = 0,
             int animesPerPage = AnimeServieModel.AimesPerPage,
-            AnimeSorting sorting = AnimeSorting.DateCreated,
-            int currentPage = 1);
+            AnimeSorting sorting = AnimeSorting.DateCreated);
 
         AnimeDetailsServcieModel Details(int id);
 

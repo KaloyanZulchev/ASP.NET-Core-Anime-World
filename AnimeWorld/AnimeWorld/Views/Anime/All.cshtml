@@ -58,6 +58,11 @@
                     </div>
                     <div class="row">
                        <partial name="_ListingAnimesPartial" model="@Model.Animes" />
+
+                        @if (!Model.Animes.Any())
+                        {
+                            <h2 class="text-white">No reults.</h2>
+                        }
                     </div>
                 </div>
                 @{ var previousPage = Model.CurrentPage - 1;

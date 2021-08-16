@@ -33,12 +33,13 @@ namespace AnimeWorld.Controllers
         public IActionResult All([FromQuery] AllAnimesQueryModel query)
         {
             var queryResult = this.animes.All(
+                null,
+                query.CurrentPage,
                 query.SearchTerm,
                 query.TypeId,
                 query.GenreId,
                 AllAnimesQueryModel.AnimesPerPage,
-                query.Sorting,
-                query.CurrentPage);
+                query.Sorting);
 
             query.Genres = this.animes.AllGenres();
             query.Types = this.animes.AllTypes();
@@ -122,6 +123,25 @@ namespace AnimeWorld.Controllers
                 Rating = new RatingInformation { Rating = this.ratings.CalculateRating(id),
                                                  Votes = this.ratings.VotesCount(id)}
             });
+        }
+
+        [Authorize]
+        public IActionResult Mine([FromQuery] AllAnimesQueryModel query)
+        {
+            var queryResult = this.animes.All(
+                this.User.Id(),
+                query.CurrentPage);
+
+            query.Animes = queryResult.Animes;
+
+            foreach (var anime in query.Animes)
+            {
+                anime.IsOnMinePage = true;
+            }
+
+            query.TotalAnimes = queryResult.TotalAnimes;
+
+            return View(query);
         }
 
         public IActionResult Watch(int id)
