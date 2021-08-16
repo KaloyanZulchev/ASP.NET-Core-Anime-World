@@ -43,7 +43,13 @@ namespace AnimeWorld.Services.Ratings
             var stars = this.data
                 .Ratings
                 .Where(r => r.AnimeId == animeId)
-                .Select(r => r.Stars);
+                .Select(r => r.Stars)
+                .ToList();
+
+            if (stars.Count == 0)
+            {
+                return 0;
+            }
 
             var rawRating = (stars.Sum() * 1.0) / stars.Count();
 
@@ -62,7 +68,7 @@ namespace AnimeWorld.Services.Ratings
                 residue = 1;
             }
 
-            var rating = stars.Sum() / stars.Count() + residue;
+            var rating = stars.Sum() / stars.Count + residue;
 
             return rating;
         }

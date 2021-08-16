@@ -186,6 +186,12 @@ namespace AnimeWorld.Services.Animes
             return animes;
         }
 
+        public string Trailer(int id)
+            => this.data
+                .Animes
+                .Find(id)
+                .TrailerURL;
+
         public IEnumerable<AnimeGanreServiceModel> AllGenres()
             => this.data
                 .Genres

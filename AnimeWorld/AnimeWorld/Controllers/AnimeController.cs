@@ -123,5 +123,15 @@ namespace AnimeWorld.Controllers
                                                  Votes = this.ratings.VotesCount(id)}
             });
         }
+
+        public IActionResult Watch(int id)
+        {
+            if (!this.animes.IsValidId(id))
+            {
+                return BadRequest();
+            }
+
+            return View(null, this.animes.Trailer(id));
+        }
     }
 }

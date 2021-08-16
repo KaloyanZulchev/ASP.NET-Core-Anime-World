@@ -43,6 +43,8 @@ namespace AnimeWorld.Services.Animes
 
         void IncreaseViews(int id);
 
+        string Trailer(int id);
+
         IEnumerable<AnimeGanreServiceModel> AllGenres();
 
         IEnumerable<AnimeTypeServiceModel> AllTypes();
