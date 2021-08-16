@@ -4,8 +4,10 @@ using AnimeWorld.Services.Animes;
 using AnimeWorld.Services.Animes.Models;
 using AnimeWorld.Services.Commets;
 using AnimeWorld.Services.Ratings;
+using AnimeWorld.Services.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace AnimeWorld.Controllers
 {
@@ -14,15 +16,18 @@ namespace AnimeWorld.Controllers
         private readonly IAnimeService animes;
         private readonly IRatingService ratings;
         private readonly ICommentService comments;
+        private readonly IUserService users;
 
         public AnimeController(
             IAnimeService anime,
             IRatingService ratings,
-            ICommentService comments)
+            ICommentService comments,
+            IUserService users)
         {
             this.animes = anime;
             this.ratings = ratings;
             this.comments = comments;
+            this.users = users;
         }
 
         public IActionResult All([FromQuery] AllAnimesQueryModel query)
@@ -101,8 +106,16 @@ namespace AnimeWorld.Controllers
 
             this.animes.IncreaseViews(id);
 
+            var isFollow = false;
+
+            if (this.User.FindFirst(ClaimTypes.NameIdentifier) != null)
+            {
+                isFollow = this.users.IsFollow(id, this.User.Id());
+            }
+
             return View(new AnimeDetailsViewModel()
             {
+                IsFollow = isFollow,
                 Anime = this.animes.Details(id),
                 SimilarAnimes = this.animes.SimilarAnimes(id),
                 Comments = this.comments.AllByAnimeId(id),

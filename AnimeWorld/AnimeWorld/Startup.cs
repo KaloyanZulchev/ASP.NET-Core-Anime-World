@@ -4,6 +4,7 @@ using AnimeWorld.Infrastructure.Extensions;
 using AnimeWorld.Services.Animes;
 using AnimeWorld.Services.Commets;
 using AnimeWorld.Services.Ratings;
+using AnimeWorld.Services.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -51,6 +52,7 @@ namespace AnimeWorld
             services.AddTransient<IAnimeService, AnimeService>();
             services.AddTransient<ICommentService, CommentService>();
             services.AddTransient<IRatingService, RatingService>();
+            services.AddTransient<IUserService, UserService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

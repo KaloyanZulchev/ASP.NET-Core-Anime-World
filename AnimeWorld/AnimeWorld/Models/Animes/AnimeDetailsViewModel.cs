@@ -6,6 +6,8 @@ namespace AnimeWorld.Models.Animes
 {
     public class AnimeDetailsViewModel
     {
+        public bool IsFollow { get; set; }
+
         public AnimeDetailsServcieModel Anime { get; set; }
 
         public RatingInformation Rating { get; set; }

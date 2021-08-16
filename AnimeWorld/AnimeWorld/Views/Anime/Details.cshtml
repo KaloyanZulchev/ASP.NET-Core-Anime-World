@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div class="anime__details__btn">
-                            <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
+                            <a asp-controller="User" asp-action="FollowAnime" asp-route-animeId="@Model.Anime.Id" class="follow-btn"><i class="fa @(Model.IsFollow ? "fa-heart" : "fa-heart-o")"></i>@(Model.IsFollow ? "UNFOLLOW" : "FOLLOW")</a>
                             <a asp-controller="Anime" asp-action="Watch" asp-route-id="@Model.Anime.Id" class="watch-btn">
                                 <span>Watch Trailer</span> <i class="fa fa-angle-right"></i>
                             </a>
