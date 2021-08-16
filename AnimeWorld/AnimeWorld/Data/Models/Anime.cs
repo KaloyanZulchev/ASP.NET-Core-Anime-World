@@ -55,6 +55,6 @@ namespace AnimeWorld.Data.Models
 
         public ICollection<AnimeUser> Users { get; init; } = new HashSet<AnimeUser>();
 
-        public ICollection<Rateing> Rateings { get; init; } = new HashSet<Rateing>();
+        public ICollection<Rating> Rateings { get; init; } = new HashSet<Rating>();
     }
 }

@@ -21,6 +21,8 @@ namespace AnimeWorld.Data
 
         public DbSet<Producer> Producers { get; init; }
 
+        public DbSet<Rating> Ratings { get; init; }
+
         public DbSet<AnimeGenre> AnimesGenres { get; init; }
 
         public DbSet<AnimeProducer> AnimesProducers { get; init; }

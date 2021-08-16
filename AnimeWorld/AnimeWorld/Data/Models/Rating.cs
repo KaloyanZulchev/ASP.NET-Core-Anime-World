@@ -3,7 +3,7 @@ using static AnimeWorld.Data.DataConstants.Rating;
 
 namespace AnimeWorld.Data.Models
 {
-    public class Rateing
+    public class Rating
     {
         public int Id { get; init; }
 

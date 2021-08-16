@@ -30,13 +30,27 @@
                         </div>
                         <div class="anime__details__rating">
                             <div class="rating">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star-half-o"></i></a>
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                        var starClass = "fa fa-star-o";
+
+                                        if (i <= Model.Rating.Rating)
+                                        {
+                                            starClass = "fa fa-star";
+                                        }
+                                        else if (i == Model.Rating.Rating + 0.5)
+                                        {
+                                            starClass = "fa fa-star-half-o";
+
+                                        }
+
+                                    <a asp-controller="Rating"
+                                       asp-action="Create"
+                                       asp-route-stars="@i"
+                                       asp-route-animeId="@Model.Anime.Id"><i class="@starClass"></i></a>
+                                }
                             </div>
-                            <span>1.029 Votes</span>
+                            <span>@Model.Rating.Votes Votes</span>
                         </div>
                         <p>@Model.Anime.Description</p>
                         <div class="anime__details__widget">
@@ -52,7 +66,7 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <ul>
-                                        <li><span>Rating:</span> 8.5 / 161 times</li>
+                                        <li><span>Rating:</span> @Model.Rating.Rating / @Model.Rating.Votes times</li>
                                         <li><span>Views:</span>@Model.Anime.Views</li>
                                     </ul>
                                 </div>
