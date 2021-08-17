@@ -93,12 +93,31 @@
                     </div>
                     @foreach (var comment in Model.Comments)
                     {
+                        var time = (comment.SecondsAfterCreation / 60 * 60 * 24 * 365).ToString() + "Years";
+
+                        if (comment.SecondsAfterCreation < 60)
+                        {
+                            time = comment.SecondsAfterCreation.ToString() + " Seconds";
+                        }
+                        else if (comment.SecondsAfterCreation < 60 * 60)
+                        {
+                            time = (comment.SecondsAfterCreation / 60).ToString() + " Minutes";
+                        }
+                        else if (comment.SecondsAfterCreation < 60 * 60 * 24)
+                        {
+                            time = (comment.SecondsAfterCreation / 60 * 24).ToString() + " Hours";
+                        }
+                        else if (comment.SecondsAfterCreation < 60 * 60 * 24 * 365)
+                        {
+                            time = (comment.SecondsAfterCreation / 60 * 24 * 365).ToString() + " Days";
+                        }
+
         <div class="anime__review__item">
             <div class="anime__review__item__pic">
-                <img src="@comment.UserImageURL" alt="">
+                <img src="@(comment.UserImageURL ?? "https://avatarfiles.alphacoders.com/197/197662.jpg")" alt="">
             </div>
             <div class="anime__review__item__text">
-                <h6>@comment.UserName - <span>1 Hour ago</span></h6>
+                <h6>@comment.UserName - <span>@time ago</span></h6>
                 <p>
                     @comment.Content
                 </p>
@@ -112,7 +131,7 @@
             <h5>Your Comment</h5>
         </div>
         <form method="post" asp-controller="Comment" asp-action="Create">
-            <textarea name="Content" id="Content" placeholder="Your Comment"></textarea>
+            <textarea class="text-dark" name="Content" id="Content" placeholder="Your Comment"></textarea>
             <input value="@Model.Anime.Id" name="AnimeId" id="AnimeId" style="display:none" />
             <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
         </form>

@@ -3,6 +3,7 @@ using AnimeWorld.Data.Models;
 using AnimeWorld.Services.Commets.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,6 +26,7 @@ namespace AnimeWorld.Services.Commets
             {
                 AnimeId = animeId,
                 Content = content,
+                DateCreated = DateTime.UtcNow,
                 UserId = userId
             };
 

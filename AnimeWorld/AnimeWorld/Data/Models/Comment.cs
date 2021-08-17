@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 using static AnimeWorld.Data.DataConstants.Comment;
 
@@ -11,6 +12,8 @@ namespace AnimeWorld.Data.Models
         [Required]
         [MaxLength(ContentMaxLength)]
         public string Content { get; set; }
+
+        public DateTime DateCreated { get; set; }
 
         public int AnimeId { get; set; }
 
