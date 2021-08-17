@@ -1,4 +1,5 @@
 ﻿using AnimeWorld.Data.Models;
+using AnimeWorld.Services.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,13 +13,16 @@ namespace AnimeWorld.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly IUserService users;
 
         public IndexModel(
             UserManager<User> userManager,
-            SignInManager<User> signInManager)
+            SignInManager<User> signInManager,
+            IUserService users)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            this.users = users;
         }
 
         public string Username { get; set; }
@@ -33,18 +37,22 @@ namespace AnimeWorld.Areas.Identity.Pages.Account.Manage
         {
             [StringLength(UserNameMaxLength, MinimumLength = UserNameMinLength)]
             public string Username { get; set; }
+
+            [Url]
+            public string ImageUrl { get; set; }
         }
 
         private async Task LoadAsync(User user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var imageUrl = this.users.GetImageUrl(user.Id);
 
             Username = userName;
 
             Input = new InputModel
             {
-                Username = userName
+                Username = userName,
+                ImageUrl = imageUrl
             };
         }
 
@@ -81,6 +89,17 @@ namespace AnimeWorld.Areas.Identity.Pages.Account.Manage
                 if (!setUserResult.Succeeded)
                 {
                     StatusMessage = "Unexpected error when trying to set username.";
+                    return RedirectToPage();
+                }
+            }
+
+            var imageUrl = this.users.GetImageUrl(user.Id);
+            if (Input.ImageUrl != imageUrl)
+            {
+                var setImageUrlResult = this.users.SetImageUrl(Input.ImageUrl, user.Id);
+                if (!setImageUrlResult)
+                {
+                    StatusMessage = "Unexpected error when trying to set image url.";
                     return RedirectToPage();
                 }
             }

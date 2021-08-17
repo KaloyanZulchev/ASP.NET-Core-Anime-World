@@ -36,6 +36,23 @@ namespace AnimeWorld.Services.Users
             }
         }
 
+        public string GetImageUrl(string userId)
+            => this.data
+                .Users
+                .Find(userId)
+                .ImageURL;
+
+        public bool SetImageUrl(string imageUrl, string userId)
+        {
+            var user = this.data.Users.Find(userId);
+
+            user.ImageURL = imageUrl;
+
+            this.data.SaveChanges();
+
+            return true;
+        }
+
         public bool IsFollow(int animeId, string userId)
         {
             if (userId == null)
