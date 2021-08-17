@@ -1,4 +1,5 @@
 ﻿@model AnimeFormModel
+@{ ViewData["Title"] = "Add"; }
 
 <section class="normal-breadcrumb set-bg" data-setbg='https://static.posters.cz/image/750webp/84239.webp'>
     <div class="container">
@@ -70,8 +71,7 @@
                             <select asp-for="TypeId" class="w-100">
                                 @foreach (var type in Model.Types)
                                 {
-                    <option value="@type.Id">@type.Name</option>
-}
+                    <option value="@type.Id">@type.Name</option>}
                             </select>
                         </div>
                         <br />
@@ -81,8 +81,7 @@
                             <select asp-for="GenerId" class="w-100">
                                 @foreach (var genre in Model.Geners)
                                 {
-                    <option value="@genre.Id">@genre.Name</option>
-}
+                    <option value="@genre.Id">@genre.Name</option>}
                             </select>
                         </div>
                         <br />

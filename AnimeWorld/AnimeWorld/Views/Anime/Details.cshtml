@@ -2,7 +2,10 @@
 @inject SignInManager<User> SignInManager
 @model AnimeDetailsViewModel
 
-@{ var finishDate = string.Empty;
+@{
+    ViewData["Title"] = "Details";
+
+    var finishDate = string.Empty;
 
     if (Model.Anime.Finished == null && Model.Anime.Epizodes != 1)
     {

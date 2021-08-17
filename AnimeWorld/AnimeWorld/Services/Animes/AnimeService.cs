@@ -176,12 +176,10 @@ namespace AnimeWorld.Services.Animes
                 .ProjectTo<TopViewsAnime>(this.mapper)
                 .ToList();
 
-
-        //TO DOO when add ratig refactor this method
         public IEnumerable<TopRatedAnime> TopRatedAnimes()
             => this.data
                 .Animes
-                .OrderBy(a => a.Views)
+                .OrderByDescending(a => a.Rateings.Count * a.Rateings.Average(r => r.Stars))
                 .Take(TopRatedAnime.AnimesPerPage)
                 .ProjectTo<TopRatedAnime>(this.mapper)
                 .ToList();
