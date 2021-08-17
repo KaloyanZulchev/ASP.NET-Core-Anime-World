@@ -1,0 +1,84 @@
+﻿@model AnimeEditFormModel
+
+<section class="normal-breadcrumb set-bg" data-setbg='https://static.posters.cz/image/750webp/84239.webp'>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="normal__breadcrumb__text">
+                    <h2>Sign Up</h2>
+                    <p>Welcome to the official Anime blog.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="signup spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-2">
+                <div class="add__form">
+                    <h3>Anime Information</h3>
+                    <form method="post">
+                        <div class="input__item">
+                            <label asp-for="NameJPN"></label>
+                            <input asp-for="NameJPN">
+                            <span asp-validation-for="NameJPN" class="small text-danger"></span>
+                        </div>
+                        <div class="input__item">
+                            <label asp-for="NameEN"></label>
+                            <input asp-for="NameEN" placeholder="[Not Required]">
+                            <span asp-validation-for="NameEN" class="small text-danger"></span>
+                        </div>
+                        <div class="input__item">
+                            <label asp-for="Description"></label>
+                            <textarea asp-for="Description"></textarea>
+                            <span asp-validation-for="Description" class="small text-danger"></span>
+                        </div>
+                        <div class="input__item">
+                            <label asp-for="Epizodes"></label>
+                            <input asp-for="Epizodes">
+                            <span asp-validation-for="Epizodes" class="small text-danger"></span>
+                        </div>
+                        <div class="input__item">
+                            <label asp-for="ImageURL"></label>
+                            <input asp-for="ImageURL">
+                            <span asp-validation-for="ImageURL" class="small text-danger"></span>
+                        </div>
+                        <div class="input__item">
+                            <label asp-for="TrailerURL"></label>
+                            <input asp-for="TrailerURL" placeholder="[Not Required]">
+                            <span asp-validation-for="TrailerURL" class="small text-danger"></span>
+                        </div>
+                        <div class="input__item">
+                            <label asp-for="Aired"></label>
+                            <input type="date" asp-for="Aired" min="@AnimeFormModel.MinDate" max="@AnimeFormModel.MaxDate">
+                            <span asp-validation-for="Aired" class="small text-danger"></span>
+                        </div>
+                        <div class="input__item">
+                            <label asp-for="Finished"></label>
+                            <input type="date" asp-for="Finished" min="@AnimeFormModel.MinDate" max="@AnimeFormModel.MaxDate">
+                            <span asp-validation-for="Finished" class="small text-danger"></span>
+                        </div>
+                        <div class="input__item">
+                            <label asp-for="TypeId"></label>
+                            <select asp-for="TypeId" class="w-100">
+                                @foreach (var type in Model.Types)
+                                {
+                    <option value="@type.Id">@type.Name</option>}
+                            </select>
+                        </div>
+                        <br />
+                        <button type="submit" class="site-btn">Edit</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

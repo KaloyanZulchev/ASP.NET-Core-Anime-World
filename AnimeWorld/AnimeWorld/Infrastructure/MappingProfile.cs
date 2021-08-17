@@ -26,6 +26,8 @@ namespace AnimeWorld.Infrastructure
                 .ForMember(c => c.Producers, cfg => cfg.MapFrom(c => c.Producers.Select(p => p.Producer.Name)))
                 .ForMember(c => c.Genres, cfg => cfg.MapFrom(c => c.Genres.Select(g => g.Genre.Name)));
 
+            this.CreateMap<Anime, EditAnimeServiceModel>();
+
             this.CreateMap<Comment, CommentServiceModel>()
                 .ForMember(c => c.UserName, cfg => cfg.MapFrom(c => c.User.UserName));
         }

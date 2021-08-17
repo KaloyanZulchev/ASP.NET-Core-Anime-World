@@ -117,7 +117,7 @@ namespace AnimeWorld.Services.Animes
                 Aired = aired,
                 Finished = finished,
                 TypeId = typeId,
-                Genres = new List<AnimeGenre>() { new AnimeGenre() { GenreId = genreId} },
+                Genres = new List<AnimeGenre>() { new AnimeGenre() { GenreId = genreId } },
                 UserId = userId
             };
 
@@ -132,6 +132,40 @@ namespace AnimeWorld.Services.Animes
                 .Animes
                 .Where(a => a.Id == id)
                 .ProjectTo<AnimeDetailsServcieModel>(this.mapper)
+                .FirstOrDefault();
+
+        public void Edit(
+            int id,
+            string nameJPN,
+            string nameEN,
+            string description,
+            int epizodes,
+            string imageURL,
+            string trailerURL,
+            DateTime aired,
+            DateTime? finished,
+            int typeId)
+        {
+            var anime = this.data.Animes.Find(id);
+
+            anime.NameJPN = nameJPN;
+            anime.NameEN = nameEN;
+            anime.Description = description;
+            anime.Epizodes = epizodes;
+            anime.ImageURL = imageURL;
+            anime.TrailerURL = trailerURL;
+            anime.Aired = aired;
+            anime.Finished = finished;
+            anime.TypeId = typeId;
+
+            this.data.SaveChanges();
+        }
+
+        public EditAnimeServiceModel ById(int id)
+            => this.data
+                .Animes
+                .Where(a => a.Id == id)
+                .ProjectTo<EditAnimeServiceModel>(this.mapper)
                 .FirstOrDefault();
 
         public IEnumerable<TopViewsAnime> TopViewsAnimes()
@@ -232,5 +266,10 @@ namespace AnimeWorld.Services.Animes
             => this.data
                 .Animes
                 .Any(a => a.Id == id);
+
+        public bool IsOnUser(int id, string userId)
+         => this.data
+             .Animes
+             .Any(a => a.Id == id && a.UserId == userId);
     }
 }

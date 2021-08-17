@@ -32,6 +32,20 @@ namespace AnimeWorld.Services.Animes
 
         AnimeDetailsServcieModel Details(int id);
 
+        void Edit(
+             int id,
+             string nameJPN,
+             string nameEN,
+             string description,
+             int epizodes,
+             string imageURL,
+             string trailerURL,
+             DateTime aired,
+             DateTime? finished,
+             int typeId);
+
+        EditAnimeServiceModel ById(int id);
+
         IEnumerable<TopViewsAnime> TopViewsAnimes();
 
         IEnumerable<TopRatedAnime> TopRatedAnimes();
@@ -51,5 +65,7 @@ namespace AnimeWorld.Services.Animes
         IEnumerable<AnimeTypeServiceModel> AllTypes();
 
         bool IsValidId(int id);
+
+        bool IsOnUser(int id, string userId);
     }
 }
