@@ -7,6 +7,10 @@ namespace AnimeWorld.Services.Commets
     {
         int Create(int animeId, string userId, string content);
 
+        bool Delete(int id);
+
         IEnumerable<CommentServiceModel> AllByAnimeId(int animeId);
+
+        bool IsValidId(int id);
     }
 }

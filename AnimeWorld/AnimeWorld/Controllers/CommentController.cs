@@ -39,5 +39,20 @@ namespace AnimeWorld.Controllers
 
             return RedirectToAction("Details", "Anime", new { id = comment.AnimeId});
         }
+
+        [Authorize]
+        public IActionResult Delete(int id, int animeId)
+        {
+            if (!this.animes.IsValidId(animeId) || !this.commets.IsValidId(id))
+            {
+                return BadRequest();
+            }
+
+            this.commets.Delete(id);
+
+            this.TempData[WebConstats.Message] = WebConstats.CommentDeleteMessage;
+
+            return RedirectToAction("Details", "Anime", new { Id = animeId });
+        }
     }
 }

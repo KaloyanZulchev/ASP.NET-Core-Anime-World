@@ -12,6 +12,7 @@
 
         //Comments messages
         public const string CommentAddMessage = "Comment has been added";
+        public const string CommentDeleteMessage = "Comment has been deleted";
 
         //Ratings messages
         public const string SuccessfulRating = "You have successfully rating this anime.";

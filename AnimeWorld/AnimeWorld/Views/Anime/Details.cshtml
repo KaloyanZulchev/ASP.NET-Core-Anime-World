@@ -1,4 +1,5 @@
 @using Microsoft.AspNetCore.Identity
+@using AnimeWorld.Infrastructure.Extensions
 @inject SignInManager<User> SignInManager
 @model AnimeDetailsViewModel
 
@@ -117,10 +118,18 @@
                 <img src="@(comment.UserImageURL ?? "https://avatarfiles.alphacoders.com/197/197662.jpg")" alt="">
             </div>
             <div class="anime__review__item__text">
-                <h6>@comment.UserName - <span>@time ago</span></h6>
+                <h6>@comment.UserName - <span>@time ago </span></h6>
                 <p>
                     @comment.Content
                 </p>
+                @if (this.User.IsInRole(WebConstats.AdministratorRoleName) || (this.User.Identity.IsAuthenticated && this.User.Id() == comment.UserId))
+                {
+                    <div class="product__item__text">
+                        <ul>
+                            <li class="btn btn-danger"><a asp-controller="Comment" asp-action="Delete" asp-route-id="@comment.Id" asp-route-animeId="@Model.Anime.Id" class="text-danger">Delete</a></li>
+                        </ul>
+                    </div>
+                }
             </div>
         </div>}
                 </div>

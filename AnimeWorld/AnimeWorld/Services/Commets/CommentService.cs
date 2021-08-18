@@ -36,11 +36,26 @@ namespace AnimeWorld.Services.Commets
             return commentData.Id;
         }
 
+        public bool Delete(int id)
+        {
+            var comment = this.data.Comments.Find(id);
+
+            this.data.Comments.Remove(comment);
+            this.data.SaveChanges();
+
+            return true;
+        }
+
         public IEnumerable<CommentServiceModel> AllByAnimeId(int animeId)
             => this.data
                 .Comments
                 .Where(c => c.AnimeId == animeId)
                 .ProjectTo<CommentServiceModel>(this.mapper)
                 .ToList();
+
+        public bool IsValidId(int id)
+            => this.data
+                .Comments
+                .Any(c => c.Id == id);
     }
 }
