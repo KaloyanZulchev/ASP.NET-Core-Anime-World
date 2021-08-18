@@ -6,7 +6,7 @@
 
         string GetImageUrl(string userId);
 
-        void FollowAnime(int animeId, string userId);
+        bool FollowAnime(int animeId, string userId);
 
         bool IsFollow(int animeId, string userId);
     }

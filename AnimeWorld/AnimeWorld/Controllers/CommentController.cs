@@ -35,6 +35,8 @@ namespace AnimeWorld.Controllers
                     comment.Content);
             }
 
+            this.TempData[WebConstats.Message] = WebConstats.CommentAddMessage;
+
             return RedirectToAction("Details", "Anime", new { id = comment.AnimeId});
         }
     }

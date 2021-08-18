@@ -64,7 +64,7 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="header__right">
-                        <a asp-area="" asp-controller="Anime" asp-action="Random" ><span class="icon_refresh"></span></a>
+                        <a asp-area="" asp-controller="Anime" asp-action="Random"><span class="icon_refresh"></span></a>
                         @if (this.User.Identity.IsAuthenticated)
                         {
                             <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><span class="icon_profile"></span></a>
@@ -78,6 +78,22 @@
 
     <div class="container">
         <main role="main" class="pb-3">
+            @{
+                var message = TempData[AnimeWorld.WebConstats.Message];
+                var warning = TempData[AnimeWorld.WebConstats.Warning];
+            }
+            @if (message != null)
+            {
+                <div class="alert alert-success alert-message-home text-center" role="alert">
+                    @message
+                </div>
+            }
+            @if (warning != null)
+            {
+                <div class="alert alert-warning alert-message-home text-center" role="alert">
+                    @warning
+                </div>
+            }
             @RenderBody()
         </main>
     </div>
@@ -122,5 +138,9 @@
     <script src="~/js/owl.carousel.min.js"></script>
     <script src="~/js/main.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        $(".alert-message-home").show().delay(5000).fadeOut();
+    </script>
 </body>
 </html>

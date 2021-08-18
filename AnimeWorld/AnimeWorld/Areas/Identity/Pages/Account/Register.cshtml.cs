@@ -87,6 +87,8 @@ namespace AnimeWorld.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
+                    this.TempData[WebConstats.Message] = WebConstats.SuccessfulRegistration;
+
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(

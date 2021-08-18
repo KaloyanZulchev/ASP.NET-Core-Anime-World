@@ -10,7 +10,7 @@ namespace AnimeWorld.Services.Users
 
         public UserService(AnimeWorldDbContext data) => this.data = data;
 
-        public void FollowAnime(int animeId, string userId)
+        public bool FollowAnime(int animeId, string userId)
         {
             var animeUserData = this.data
                 .AnimesUsers
@@ -27,12 +27,16 @@ namespace AnimeWorld.Services.Users
                 user.ListedAnimes.Add(animeUserData);
 
                 this.data.SaveChanges();
+
+                return true;
             }
             else
             {
                 user.ListedAnimes.Remove(animeUserData);
 
                 this.data.SaveChanges();
+
+                return false;
             }
         }
 

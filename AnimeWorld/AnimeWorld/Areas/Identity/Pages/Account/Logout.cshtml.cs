@@ -31,6 +31,9 @@ namespace AnimeWorld.Areas.Identity.Pages.Account
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
+
+            this.TempData[WebConstats.Warning] = WebConstats.SuccessfulLogout;
+
             if (returnUrl != null)
             {
                 return LocalRedirect(returnUrl);

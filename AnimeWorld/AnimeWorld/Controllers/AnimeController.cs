@@ -95,6 +95,8 @@ namespace AnimeWorld.Controllers
                 anime.GenerId,
                 this.User.Id());
 
+            this.TempData[WebConstats.Message] = WebConstats.AnimeAddMessage;
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -154,6 +156,8 @@ namespace AnimeWorld.Controllers
                     anime.Aired,
                     anime.Finished,
                     anime.TypeId);
+
+            this.TempData[WebConstats.Message] = WebConstats.AnimeHasBeenEdited;
 
             return RedirectToAction("Details", "Anime", new { Id = anime.Id });
         }

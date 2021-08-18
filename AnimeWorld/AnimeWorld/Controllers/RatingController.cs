@@ -28,6 +28,8 @@ namespace AnimeWorld.Controllers
 
             this.ratings.Create(model.Stars, model.AnimeId, this.User.Id());
 
+            this.TempData[WebConstats.Message] = WebConstats.SuccessfulRating;
+
             return RedirectToAction("Details", "Anime", new { Id = model.AnimeId});
         }
     }

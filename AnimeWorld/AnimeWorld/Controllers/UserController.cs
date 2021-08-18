@@ -25,7 +25,16 @@ namespace AnimeWorld.Controllers
                 return BadRequest();
             }
 
-            this.users.FollowAnime(animeId, this.User.Id());
+            var successfulFollow = this.users.FollowAnime(animeId, this.User.Id());
+
+            if (successfulFollow)
+            {
+                this.TempData[WebConstats.Message] = WebConstats.SuccessfulFollow;
+            }
+            else
+            {
+                this.TempData[WebConstats.Warning] = WebConstats.SuccessfulUnfollow;
+            }
 
             return RedirectToAction("Details", "Anime", new { Id = animeId });
         }

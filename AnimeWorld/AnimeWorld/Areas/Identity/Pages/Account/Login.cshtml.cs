@@ -74,6 +74,9 @@ namespace AnimeWorld.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+
+                    this.TempData[WebConstats.Message] = WebConstats.SuccessfulLogin;
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
