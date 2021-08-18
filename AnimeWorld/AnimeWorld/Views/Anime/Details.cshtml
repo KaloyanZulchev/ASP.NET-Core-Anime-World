@@ -93,23 +93,23 @@
                     </div>
                     @foreach (var comment in Model.Comments)
                     {
-                        var time = (comment.SecondsAfterCreation / 60 * 60 * 24 * 365).ToString() + "Years";
+                        var time = (comment.SecondsAfterCreation / (60 * 60 * 24 * 365)).ToString() + " Years";
 
                         if (comment.SecondsAfterCreation < 60)
                         {
                             time = comment.SecondsAfterCreation.ToString() + " Seconds";
                         }
-                        else if (comment.SecondsAfterCreation < 60 * 60)
+                        else if (comment.SecondsAfterCreation < (60 * 60))
                         {
                             time = (comment.SecondsAfterCreation / 60).ToString() + " Minutes";
                         }
-                        else if (comment.SecondsAfterCreation < 60 * 60 * 24)
+                        else if (comment.SecondsAfterCreation < (60 * 60 * 24))
                         {
-                            time = (comment.SecondsAfterCreation / 60 * 24).ToString() + " Hours";
+                            time = (comment.SecondsAfterCreation / (60 * 60)).ToString() + " Hours";
                         }
-                        else if (comment.SecondsAfterCreation < 60 * 60 * 24 * 365)
+                        else if (comment.SecondsAfterCreation < (60 * 60 * 24 * 365))
                         {
-                            time = (comment.SecondsAfterCreation / 60 * 24 * 365).ToString() + " Days";
+                            time = (comment.SecondsAfterCreation / (60 * 60 * 24)).ToString() + " Days";
                         }
 
         <div class="anime__review__item">
