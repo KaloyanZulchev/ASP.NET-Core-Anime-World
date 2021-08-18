@@ -27,8 +27,13 @@ namespace AnimeWorld.Services.Animes
             string searchTerm = null,
             int typeId = 0,
             int genreId = 0,
-            int animesPerPage = AnimeServieModel.AimesPerPage,
+            int animesPerPage = AnimeServieModel.AnimesPerPage,
             AnimeSorting sorting = AnimeSorting.DateCreated);
+
+        AnimeQueryServieModel Follows(
+            string userId,
+            int currentPage = 1,
+            int animesPerPage = AnimeServieModel.AnimesPerPage);
 
         AnimeDetailsServcieModel Details(int id);
 

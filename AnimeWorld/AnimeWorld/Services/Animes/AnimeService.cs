@@ -27,7 +27,7 @@ namespace AnimeWorld.Services.Animes
             string searchTerm = null,
             int typeId = 0,
             int genreId = 0,
-            int animesPerPage = AnimeServieModel.AimesPerPage,
+            int animesPerPage = AnimeServieModel.AnimesPerPage,
             AnimeSorting sorting = AnimeSorting.DateCreated)
         {
             var animeQuery = this.data.Animes.AsQueryable();
@@ -63,6 +63,27 @@ namespace AnimeWorld.Services.Animes
                 AnimeSorting.MostViews => animeQuery.OrderByDescending(a => a.Views),
                 AnimeSorting.DateCreated or _ => animeQuery.OrderByDescending(a => a.Id)
             };
+
+            var totalAnimes = animeQuery.Count();
+
+            var animes = animeQuery
+                .Skip((currentPage - 1) * animesPerPage)
+                .Take(animesPerPage)
+                .ProjectTo<AnimeServieModel>(this.mapper)
+                .ToList();
+
+            return new AnimeQueryServieModel
+            {
+                Animes = animes,
+                TotalAnimes = totalAnimes
+            };
+        }
+
+        public AnimeQueryServieModel Follows(string userId, int currentPage = 1, int animesPerPage = AnimeServieModel.AnimesPerPage)
+        {
+            var animeQuery = this.data
+                .Animes
+                .Where(a => a.Users.Any(ua => ua.UserId == userId));
 
             var totalAnimes = animeQuery.Count();
 

@@ -2,7 +2,7 @@
 {
     public class AnimeServieModel
     {
-        public const int AimesPerPage = 6;
+        public const int AnimesPerPage = 6;
 
         public int Id { get; init; }
 

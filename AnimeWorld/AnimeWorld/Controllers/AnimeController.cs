@@ -204,6 +204,27 @@ namespace AnimeWorld.Controllers
             return View(query);
         }
 
+        [Authorize]
+        public IActionResult Follows(int currentPage)
+        {
+            if (currentPage == 0)
+            {
+                currentPage = 1;
+            }
+
+            var queryResult = this.animes
+                .Follows(this.User.Id(), currentPage, FollowAnimesViewModel.AnimesPerPage);
+
+            var model = new FollowAnimesViewModel
+            {
+                Animes = queryResult.Animes,
+                TotalAnimes = queryResult.TotalAnimes,
+                CurrentPage = currentPage
+            };
+
+            return View(model);
+        }
+
         public IActionResult Watch(int id)
         {
             if (!this.animes.IsValidId(id))
