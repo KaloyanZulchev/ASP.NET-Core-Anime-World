@@ -103,7 +103,7 @@ namespace AnimeWorld.Controllers
         [Authorize]
         public IActionResult Edit(int id)
         {
-            if (!this.animes.IsOnUser(id, this.User.Id()))
+            if (!this.animes.IsOnUser(id, this.User.Id()) && !this.User.IsInRole(WebConstats.AdministratorRoleName))
             {
                 return BadRequest();
             }
@@ -130,6 +130,11 @@ namespace AnimeWorld.Controllers
         [Authorize]
         public IActionResult Edit(AnimeEditFormModel anime)
         {
+            if (!this.animes.IsOnUser(anime.Id, this.User.Id()) && !this.User.IsInRole(WebConstats.AdministratorRoleName))
+            {
+                return BadRequest();
+            }
+
             this.ModelState.ClearValidationState("Producer");
             this.ModelState.MarkFieldValid("Producer");
 

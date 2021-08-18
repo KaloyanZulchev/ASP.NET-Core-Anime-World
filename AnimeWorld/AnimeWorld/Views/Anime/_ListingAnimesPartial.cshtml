@@ -13,7 +13,7 @@
             <ul>
                 <li>@anime.GenreName</li>
                 <li>@anime.TypeName</li>
-                @if (anime.IsOnMinePage)
+                @if (anime.IsOnMinePage || (User.Identity.IsAuthenticated && User.IsInRole(WebConstats.AdministratorRoleName)))
                 {
                     <li class="btn btn-success"><a class="text-white" asp-controller="Anime" asp-action="Edit" asp-route-id="@anime.Id">Edit</a></li>
                 }
