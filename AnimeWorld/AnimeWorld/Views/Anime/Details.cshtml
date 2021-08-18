@@ -15,7 +15,9 @@
     else if (Model.Anime.Finished != null)
     {
         finishDate = "to " + Model.Anime.Finished.Value.ToShortDateString();
-    } }
+    } 
+}
+
 <section class="anime-details spad">
     <div class="container">
         <div class="anime__details__content">
@@ -30,23 +32,23 @@
                             <h3>@Model.Anime.NameJPN</h3>
                             @if (Model.Anime.NameEN != null)
                             {
-                <span>@Model.Anime.NameEN</span>}
+                                <span>@Model.Anime.NameEN</span>
+                            }
                         </div>
                         <div class="anime__details__rating">
                             <div class="rating">
                                 @for (int i = 1; i <= 5; i++)
                                 {
-                                        var starClass = "fa fa-star-o";
+                                    var starClass = "fa fa-star-o";
 
-                                        if (i <= Model.Rating.Rating)
-                                        {
-                                            starClass = "fa fa-star";
-                                        }
-                                        else if (i == Model.Rating.Rating + 0.5)
-                                        {
-                                            starClass = "fa fa-star-half-o";
-
-                                        }
+                                    if (i <= Model.Rating.Rating)
+                                    {
+                                        starClass = "fa fa-star";
+                                    }
+                                    else if (i == Model.Rating.Rating + 0.5)
+                                    {
+                                        starClass = "fa fa-star-half-o";
+                                    }
 
                                     <a asp-controller="Rating"
                                        asp-action="Create"
@@ -113,41 +115,44 @@
                             time = (comment.SecondsAfterCreation / (60 * 60 * 24)).ToString() + " Days";
                         }
 
-        <div class="anime__review__item">
-            <div class="anime__review__item__pic">
-                <img src="@(comment.UserImageURL ?? "https://avatarfiles.alphacoders.com/197/197662.jpg")" alt="">
-            </div>
-            <div class="anime__review__item__text">
-                <h6>@comment.UserName - <span>@time ago </span></h6>
-                <p>
-                    @comment.Content
-                </p>
-                @if (this.User.IsInRole(WebConstats.AdministratorRoleName) || (this.User.Identity.IsAuthenticated && this.User.Id() == comment.UserId))
-                {
-                    <div class="product__item__text">
-                        <ul>
-                            <li class="btn btn-danger"><a asp-controller="Comment" asp-action="Delete" asp-route-id="@comment.Id" asp-route-animeId="@Model.Anime.Id" class="text-danger">Delete</a></li>
-                        </ul>
-                    </div>
-                }
-            </div>
-        </div>}
+                        <div class="anime__review__item">
+                            <div class="anime__review__item__pic">
+                                <img src="@(comment.UserImageURL ?? "https://avatarfiles.alphacoders.com/197/197662.jpg")" alt="">
+                            </div>
+                            <div class="anime__review__item__text">
+                                <h6>@comment.UserName - <span>@time ago </span></h6>
+                                <p>
+                                    @comment.Content
+                                </p>
+                                @if (this.User.IsInRole(WebConstats.AdministratorRoleName) || (this.User.Identity.IsAuthenticated && this.User.Id() == comment.UserId))
+                                {
+                                    <div class="product__item__text">
+                                        <ul>
+                                            <li class="btn btn-danger"><a asp-controller="Comment" asp-action="Delete" asp-route-id="@comment.Id" asp-route-animeId="@Model.Anime.Id" class="text-danger">Delete</a></li>
+                                        </ul>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
                 </div>
                 @if (this.SignInManager.IsSignedIn(this.User))
                 {
-    <div class="anime__details__form">
-        <div class="section-title">
-            <h5>Your Comment</h5>
-        </div>
-        <form method="post" asp-controller="Comment" asp-action="Create">
-            <textarea class="text-dark" name="Content" id="Content" placeholder="Your Comment"></textarea>
-            <input value="@Model.Anime.Id" name="AnimeId" id="AnimeId" style="display:none" />
-            <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
-        </form>
-    </div>}
-else
-{
-<h5 style="color:#ffffff">To write comments first <a asp-area="Identity" asp-page="/Account/Login">LogIn.</a></h5>}
+                    <div class="anime__details__form">
+                        <div class="section-title">
+                            <h5>Your Comment</h5>
+                        </div>
+                        <form method="post" asp-controller="Comment" asp-action="Create">
+                            <textarea class="text-dark" name="Content" id="Content" placeholder="Your Comment"></textarea>
+                            <input value="@Model.Anime.Id" name="AnimeId" id="AnimeId" style="display:none" />
+                            <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
+                        </form>
+                    </div>
+                 }
+                 else
+                 {
+                    <h5 style="color:#ffffff">To write comments first <a asp-area="Identity" asp-page="/Account/Login">LogIn.</a></h5>
+                 }
             </div>
             <div class="col-lg-4 col-md-4">
                 <div class="anime__details__sidebar">
@@ -168,8 +173,6 @@ else
     </div>
 </section>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
 
 

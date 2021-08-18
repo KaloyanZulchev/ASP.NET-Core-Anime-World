@@ -71,7 +71,8 @@
                             <select asp-for="TypeId" class="w-100">
                                 @foreach (var type in Model.Types)
                                 {
-                    <option value="@type.Id">@type.Name</option>}
+                                    <option value="@type.Id">@type.Name</option>
+                                }
                             </select>
                         </div>
                         <br />
@@ -81,7 +82,8 @@
                             <select asp-for="GenerId" class="w-100">
                                 @foreach (var genre in Model.Geners)
                                 {
-                    <option value="@genre.Id">@genre.Name</option>}
+                                    <option value="@genre.Id">@genre.Name</option>
+                                }
                             </select>
                         </div>
                         <br />
@@ -94,6 +96,4 @@
     </div>
 </section>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

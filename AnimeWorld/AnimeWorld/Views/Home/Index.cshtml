@@ -1,8 +1,6 @@
 ﻿@model HomePageAnimesModel
 
-@{
-    ViewData["Title"] = "Home";
-}
+@{ ViewData["Title"] = "Home"; }
 
 <section class="hero">
     <div class="container">
@@ -44,7 +42,7 @@
                         </div>
                     </div>
                     <div class="row">
-            <partial name="~/Views/Anime/_ListingAnimesPartial.cshtml" model="@Model.Animes" />
+                        <partial name="~/Views/Anime/_ListingAnimesPartial.cshtml" model="@Model.Animes" />
                     </div>
                 </div>
             </div>

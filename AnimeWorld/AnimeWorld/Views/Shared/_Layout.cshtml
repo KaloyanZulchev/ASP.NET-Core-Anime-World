@@ -6,10 +6,9 @@
     <title>@ViewData["Title"] - AnimeWorld</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="~/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="~/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="~/css/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="~/css/plyr.css" type="text/css">
@@ -29,7 +28,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a asp-controller="Home" asp-action="Index">
+                        <a asp-area="" asp-controller="Home" asp-action="Index">
                             <img src="~/img/logo.png" alt="">
                         </a>
                     </div>
@@ -38,25 +37,28 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a asp-controller="Home" asp-action="Index">Homepage</a></li>
+                                <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">Homepage</a></li>
                                 <li>
-                                    <a asp-controller="Anime" asp-action="All">All<span class="arrow_carrot-down"></span></a>
+                                    <a asp-area="" asp-controller="Anime" asp-action="All">All<span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a asp-controller="Anime" asp-action="All">All Animes</a></li>
+                                        <li><a asp-area="" asp-controller="Anime" asp-action="All">All Animes</a></li>
                                         @if (this.User.Identity.IsAuthenticated)
                                         {
-                                            <li><a asp-controller="Anime" asp-action="Add">Add Anime</a></li>
-                                            <li><a asp-controller="Anime" asp-action="Mine">Mine Animes</a></li>
-                                            <li><a asp-controller="Anime" asp-action="Follows">Follow Animes</a></li>
-                                            <li><a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Logout</a></li>
-                                        }
-                                        else
-                                        {
-                                            <li><a asp-area="Identity" asp-page="/Account/Register">Sign Up</a></li>
-                                            <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+                                            <li><a asp-area="" asp-controller="Anime" asp-action="Add">Add Anime</a></li>
+                                            <li><a asp-area="" asp-controller="Anime" asp-action="Mine">Mine Animes</a></li>
+                                            <li><a asp-area="" asp-controller="Anime" asp-action="Follows">Follow Animes</a></li>
                                         }
                                     </ul>
                                 </li>
+                                @if (!this.User.Identity.IsAuthenticated)
+                                {
+                                    <li><a asp-area="Identity" asp-page="/Account/Register">Sign Up</a></li>
+                                    <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+                                }
+                                else
+                                {
+                                    <li><a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Logout</a></li>
+                                }
                                 <li><a href="#">Contacts</a></li>
                             </ul>
                         </nav>
@@ -98,7 +100,6 @@
         </main>
     </div>
 
-
     <footer class="footer">
         <div class="page-up">
             <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
@@ -107,14 +108,14 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="footer__logo">
-                        <a asp-controller="Home" asp-action="Index"><img src="~/img/logo.png" alt=""></a>
+                        <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="footer__nav">
                         <ul>
-                            <li class="active"><a asp-controller="Home" asp-action="Index">Homepage</a></li>
-                            <li><a asp-controller="Anime" asp-action="All">All Animes</a></li>
+                            <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">Homepage</a></li>
+                            <li><a asp-area="" asp-controller="Anime" asp-action="All">All Animes</a></li>
                             <li><a href="#">Contacts</a></li>
                         </ul>
                     </div>

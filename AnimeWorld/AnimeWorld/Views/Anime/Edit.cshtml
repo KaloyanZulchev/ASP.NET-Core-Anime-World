@@ -66,8 +66,8 @@
                             <select asp-for="TypeId" class="w-100">
                                 @foreach (var type in Model.Types)
                                 {
-                    <option value="@type.Id">@type.Name</option>
-}
+                                    <option value="@type.Id">@type.Name</option>
+                                }
                             </select>
                         </div>
                         <br />
@@ -80,7 +80,5 @@
     </div>
 </section>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
 
