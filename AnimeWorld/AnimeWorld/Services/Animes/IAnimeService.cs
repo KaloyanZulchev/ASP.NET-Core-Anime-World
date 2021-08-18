@@ -69,6 +69,8 @@ namespace AnimeWorld.Services.Animes
 
         IEnumerable<AnimeTypeServiceModel> AllTypes();
 
+        int RandomId();
+
         bool IsValidId(int id);
 
         bool IsOnUser(int id, string userId);

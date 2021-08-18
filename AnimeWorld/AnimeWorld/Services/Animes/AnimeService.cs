@@ -13,11 +13,13 @@ namespace AnimeWorld.Services.Animes
     public class AnimeService : IAnimeService
     {
         private readonly AnimeWorldDbContext data;
+        private readonly Random random;
         private readonly IConfigurationProvider mapper;
 
-        public AnimeService(AnimeWorldDbContext data, IMapper mapper)
+        public AnimeService(AnimeWorldDbContext data, IMapper mapper, Random random)
         {
             this.data = data;
+            this.random = random;
             this.mapper = mapper.ConfigurationProvider;
         }
 
@@ -263,6 +265,17 @@ namespace AnimeWorld.Services.Animes
                 .Types
                 .ProjectTo<AnimeTypeServiceModel>(this.mapper)
                 .ToList();
+
+        public int RandomId()
+        {
+            var ids = this.data
+                .Animes
+                .Select(a => a.Id)
+                .OrderBy(i => i)
+                .ToList();
+
+            return this.random.Next(ids.First(), ids.Last() + 1);
+        }
 
         public void IncreaseViews(int id)
         {

@@ -225,6 +225,13 @@ namespace AnimeWorld.Controllers
             return View(model);
         }
 
+        public IActionResult Random()
+        {
+            var id = this.animes.RandomId();
+
+            return RedirectToAction("Details", new { Id = id });
+        }
+
         public IActionResult Watch(int id)
         {
             if (!this.animes.IsValidId(id))

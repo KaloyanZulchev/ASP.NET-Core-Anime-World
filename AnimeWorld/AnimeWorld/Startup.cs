@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace AnimeWorld
 {
@@ -53,6 +54,7 @@ namespace AnimeWorld
             services.AddTransient<ICommentService, CommentService>();
             services.AddTransient<IRatingService, RatingService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<Random>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

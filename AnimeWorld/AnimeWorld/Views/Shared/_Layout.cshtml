@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
           rel="stylesheet">
 
-    <link rel="stylesheet" href="~/css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="~/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="~/css/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="~/css/plyr.css" type="text/css">
@@ -64,6 +64,7 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="header__right">
+                        <a asp-area="" asp-controller="Anime" asp-action="Random" ><span class="icon_refresh"></span></a>
                         @if (this.User.Identity.IsAuthenticated)
                         {
                             <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><span class="icon_profile"></span></a>
