@@ -24,6 +24,7 @@
         public const string SuccessfulFollow = "You have successfully follow this anime.";
         public const string SuccessfulUnfollow = "You have unfollow this anime.";
 
-        public static string AdministratorRoleName = "Admin";
+        public const string AdministratorRoleName = "Admin";
+        public const string AdminAreaName = "Admin";
     }
 }

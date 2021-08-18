@@ -80,6 +80,7 @@ namespace AnimeWorld
                .UseAuthorization()
                .UseEndpoints(endpoints =>
                {
+                   endpoints.MapDefaultAreaRoute();
                    endpoints.MapDefaultControllerRoute();
                    endpoints.MapRazorPages();
                });
